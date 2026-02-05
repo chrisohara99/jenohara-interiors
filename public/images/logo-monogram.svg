@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <style>
+      .monogram { font-family: 'Cormorant Garamond', Georgia, serif; fill: #1a1a1a; font-size: 48px; font-weight: 300; }
+      .circle { fill: none; stroke: #C9A96E; stroke-width: 1; }
+    </style>
+  </defs>
+  
+  <!-- Outer circle -->
+  <circle cx="50" cy="50" r="45" class="circle"/>
+  
+  <!-- Monogram JO -->
+  <text x="50" y="62" text-anchor="middle" class="monogram">JO</text>
+</svg>
