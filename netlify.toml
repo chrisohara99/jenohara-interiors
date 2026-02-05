@@ -1,7 +1,5 @@
 [build]
+  command = ""
   publish = "."
 
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+# No build needed - pure static HTML
