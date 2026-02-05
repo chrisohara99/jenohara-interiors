@@ -56,9 +56,14 @@ const { title, description = "Interior design that transforms spaces into sanctu
     
     /* Header */
     header {
-      padding: 2rem 0;
+      padding: 1.5rem 0;
       background: var(--color-warm-white);
       border-bottom: 1px solid rgba(0,0,0,0.05);
+      overflow: visible;
+    }
+    
+    .logo img {
+      display: block;
     }
     
     .header-inner {
@@ -358,7 +363,7 @@ const { title, description = "Interior design that transforms spaces into sanctu
 <body>
   <header>
     <div class="container header-inner">
-      <a href="/" class="logo"><img src="/images/logo.svg" alt="Jen O'Hara Interiors" style="height: 60px; width: auto;"></a>
+      <a href="/" class="logo"><img src="/images/logo.svg" alt="Jen O'Hara Interiors" style="height: 80px; width: auto; max-width: 320px;"></a>
       <nav>
         <a href="/#portfolio">Portfolio</a>
         <a href="/#services">Services</a>
