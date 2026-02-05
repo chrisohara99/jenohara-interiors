@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Jen O'Hara Interiors | Interior Design</title>
+    <meta name="description" content="Timeless interiors for modern living. Jen O'Hara Interiors creates beautiful, livable homes in Connecticut, Westchester, and Manhattan.">
+    <script src="scripts/jquery.min.js"></script>
+    <link rel="stylesheet" href="scripts/bootstrap/css/bootstrap.css">
+    <script src="scripts/script.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/content-box.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/image-box.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="scripts/magnific-popup.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #FAF8F5;
+            --warm-white: #FFFDF9;
+            --charcoal: #2C2C2C;
+            --taupe: #8B7E74;
+            --gold: #C9A96E;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
+            color: var(--charcoal);
+            background: var(--warm-white);
+            letter-spacing: 0.02em;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+        }
+        
+        .navbar-default {
+            background: var(--warm-white);
+            border: none;
+            box-shadow: none;
+        }
+        
+        .navbar-brand {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 400;
+            letter-spacing: 0.15em;
+            color: var(--charcoal) !important;
+            text-transform: uppercase;
+        }
+        
+        .navbar-nav > li > a {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 400;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--charcoal) !important;
+        }
+        
+        .navbar-nav > li > a:hover {
+            color: var(--taupe) !important;
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            height: 100vh;
+            min-height: 600px;
+            background: url('images/living-bright.jpg') center center;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 253, 249, 0.3);
+        }
+        
+        .hero-content {
+            position: relative;
+            text-align: center;
+            padding: 3rem;
+            background: rgba(255, 253, 249, 0.92);
+            max-width: 700px;
+        }
+        
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--charcoal);
+        }
+        
+        .hero-content p {
+            font-size: 1rem;
+            color: var(--taupe);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+        
+        .btn-elegant {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 400;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            padding: 1rem 2.5rem;
+            border: 1px solid var(--charcoal);
+            background: transparent;
+            color: var(--charcoal);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-elegant:hover {
+            background: var(--charcoal);
+            color: var(--warm-white);
+        }
+        
+        /* Section Styles */
+        .section {
+            padding: 100px 0;
+        }
+        
+        .section-cream {
+            background: var(--cream);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .section-title p {
+            color: var(--taupe);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        
+        /* Portfolio Grid */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        
+        @media (max-width: 992px) {
+            .portfolio-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+        }
+        
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .portfolio-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 30px 20px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            color: white;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+        
+        .portfolio-overlay h4 {
+            font-size: 1.3rem;
+            margin: 0;
+            color: white;
+        }
+        
+        .portfolio-overlay span {
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            opacity: 0.8;
+        }
+        
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+        
+        @media (max-width: 992px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+        
+        .about-image img {
+            width: 100%;
+            max-width: 500px;
+        }
+        
+        .about-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .about-content p {
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+        
+        .about-content .signature {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.5rem;
+            color: var(--taupe);
+            margin-top: 2rem;
+        }
+        
+        /* Quote Section */
+        .quote-section {
+            padding: 120px 40px;
+            text-align: center;
+            background: var(--charcoal);
+            color: var(--warm-white);
+        }
+        
+        .quote-section blockquote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-style: italic;
+            font-weight: 300;
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.6;
+            border: none;
+            padding: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .quote-section blockquote {
+                font-size: 1.5rem;
+            }
+        }
+        
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            text-align: center;
+        }
+        
+        @media (max-width: 768px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .service-item h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .service-item p {
+            color: var(--taupe);
+            line-height: 1.8;
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            text-align: center;
+            padding: 100px 20px;
+        }
+        
+        .contact-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-section p {
+            color: var(--taupe);
+            margin-bottom: 2rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+        }
+        
+        .contact-email {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            color: var(--charcoal);
+            text-decoration: none;
+            border-bottom: 1px solid var(--taupe);
+            padding-bottom: 3px;
+        }
+        
+        .contact-email:hover {
+            color: var(--taupe);
+            border-color: var(--charcoal);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--charcoal);
+            color: rgba(255,255,255,0.6);
+            padding: 40px 20px;
+            text-align: center;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+        }
+        
+        footer a {
+            color: rgba(255,255,255,0.8);
+        }
+        
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-nav">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Jen O'Hara Interiors</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-nav">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#portfolio">Portfolio</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- Hero -->
+    <section class="hero-section">
+        <div class="hero-content" data-anima="fade-bottom" data-time="1000">
+            <h1>Timeless Interiors for Modern Living</h1>
+            <p>Creating beautiful, livable homes that honor your personal style while embracing the rhythm of everyday life.</p>
+            <a href="#portfolio" class="btn-elegant">View Portfolio</a>
+        </div>
+    </section>
+    
+    <!-- Portfolio -->
+    <section id="portfolio" class="section">
+        <div class="container">
+            <div class="section-title" data-anima="fade-bottom" data-time="1000">
+                <h2>Selected Work</h2>
+                <p>A collection of residential projects throughout Connecticut, Westchester, and Manhattan</p>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-item" data-anima="fade-bottom" data-time="1000">
+                    <img src="images/kitchen-living-open.jpg" alt="Greenwich Residence">
+                    <div class="portfolio-overlay">
+                        <span>Kitchen & Living</span>
+                        <h4>Greenwich</h4>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-anima="fade-bottom" data-time="1000" data-delay="100">
+                    <img src="images/dining-chandelier.jpg" alt="Westport Colonial">
+                    <div class="portfolio-overlay">
+                        <span>Dining Room</span>
+                        <h4>Westport</h4>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-anima="fade-bottom" data-time="1000" data-delay="200">
+                    <img src="images/study-wood.jpg" alt="Manhattan Townhouse">
+                    <div class="portfolio-overlay">
+                        <span>Study</span>
+                        <h4>Manhattan</h4>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-anima="fade-bottom" data-time="1000">
+                    <img src="images/kitchen-black-marble.jpg" alt="Darien Modern">
+                    <div class="portfolio-overlay">
+                        <span>Kitchen</span>
+                        <h4>Darien</h4>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-anima="fade-bottom" data-time="1000" data-delay="100">
+                    <img src="images/dining-swedish.jpg" alt="New Canaan Estate">
+                    <div class="portfolio-overlay">
+                        <span>Dining Room</span>
+                        <h4>New Canaan</h4>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-anima="fade-bottom" data-time="1000" data-delay="200">
+                    <img src="images/bathroom-marble.jpg" alt="Rye Retreat">
+                    <div class="portfolio-overlay">
+                        <span>Bathroom</span>
+                        <h4>Rye</h4>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-anima="fade-bottom" data-time="1000">
+                    <img src="images/living-bright.jpg" alt="Bronxville Bright">
+                    <div class="portfolio-overlay">
+                        <span>Living Room</span>
+                        <h4>Bronxville</h4>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-anima="fade-bottom" data-time="1000" data-delay="100">
+                    <img src="images/bedroom-blue.jpg" alt="Stamford Bedroom">
+                    <div class="portfolio-overlay">
+                        <span>Primary Suite</span>
+                        <h4>Stamford</h4>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-anima="fade-bottom" data-time="1000" data-delay="200">
+                    <img src="images/kitchen-oak.jpg" alt="Scarsdale Kitchen">
+                    <div class="portfolio-overlay">
+                        <span>Kitchen</span>
+                        <h4>Scarsdale</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Quote -->
+    <section class="quote-section">
+        <blockquote data-anima="fade-bottom" data-time="1000">
+            "A home should feel like a sanctuary—beautiful, yes, but never precious. The best rooms are the ones where life actually happens."
+        </blockquote>
+    </section>
+    
+    <!-- About -->
+    <section id="about" class="section section-cream">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image" data-anima="fade-right" data-time="1000">
+                    <img src="images/jen-portrait.jpg" alt="Jen O'Hara">
+                </div>
+                <div class="about-content" data-anima="fade-left" data-time="1000">
+                    <h2>Meet the Designer</h2>
+                    <p>With nearly two decades of experience creating beautiful, livable homes, I bring a cultivated perspective and deeply personal approach to every project.</p>
+                    <p>My work is guided by the belief that a home should reflect how you actually live—graceful yet functional, elegant yet welcoming. I specialize in creating interiors that feel collected rather than decorated, layering antiques with contemporary pieces to achieve spaces that feel timeless.</p>
+                    <p>Based in the New York area, I work with clients throughout Connecticut, Westchester, and Manhattan—from complete renovations to thoughtfully curated refreshes.</p>
+                    <p class="signature">— Jen</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Services -->
+    <section id="services" class="section">
+        <div class="container">
+            <div class="section-title" data-anima="fade-bottom" data-time="1000">
+                <h2>Services</h2>
+                <p>Tailored design solutions for every stage of your project</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-item" data-anima="fade-bottom" data-time="1000">
+                    <h4>Full-Service Design</h4>
+                    <p>Comprehensive interior design from concept to completion, including space planning, material selection, custom furnishings, and project management.</p>
+                </div>
+                <div class="service-item" data-anima="fade-bottom" data-time="1000" data-delay="100">
+                    <h4>Room Refresh</h4>
+                    <p>Focused transformation of individual spaces, perfect for updating a room with new furnishings, art, and accessories while maximizing your existing pieces.</p>
+                </div>
+                <div class="service-item" data-anima="fade-bottom" data-time="1000" data-delay="200">
+                    <h4>New Construction</h4>
+                    <p>Collaboration with architects and builders from the earliest stages to ensure seamless integration of architectural details and interior finishes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact -->
+    <section id="contact" class="contact-section section-cream">
+        <div class="container">
+            <h2 data-anima="fade-bottom" data-time="1000">Let's Create Something Beautiful</h2>
+            <p data-anima="fade-bottom" data-time="1000">Ready to transform your space? I'd love to hear about your project and explore how we might work together.</p>
+            <a href="mailto:jen@jenoharainteriors.com" class="contact-email" data-anima="fade-bottom" data-time="1000">jen@jenoharainteriors.com</a>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Jen O'Hara Interiors. All rights reserved.</p>
+    </footer>
+    
+    <script src="scripts/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

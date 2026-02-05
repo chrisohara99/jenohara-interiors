@@ -1,29 +1,20 @@
 # Jen O'Hara Interiors
 
-Elegant, minimal website for interior design services.
+A beautiful, minimal interior design portfolio website.
 
-## Local Development
+## About
 
-```bash
-npm install
-npm run dev
-```
+This site showcases the work of Jen O'Hara Interiors, serving clients throughout Connecticut, Westchester, and Manhattan.
 
-## Build & Deploy
+## Technology
 
-```bash
-npm run build
-```
+Built using the Saha template from ThemeForest, customized for interior design.
 
-Deploy the `dist` folder to Netlify, Vercel, or any static host.
+- Pure HTML/CSS/JavaScript
+- Bootstrap 3
+- Responsive design
+- Smooth animations
 
-## Customization
+## Deployment
 
-- **Photos:** Replace placeholder divs in `src/pages/index.astro` with actual images
-- **Bio:** Edit the About section text
-- **Contact:** Update email address
-- **Colors:** Adjust CSS variables in `src/layouts/Base.astro`
-
----
-
-Built with Astro 🚀
+Deployed via Netlify. Push to main branch to deploy.
