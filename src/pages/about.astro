@@ -1,0 +1,200 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="About" description="Learn more about Jen O'Hara and her approach to interior design.">
+  <section class="about-hero">
+    <div class="container">
+      <h1>About Jen</h1>
+    </div>
+  </section>
+  
+  <section class="about-main">
+    <div class="container">
+      <div class="about-page-grid">
+        <div class="about-photo">
+          <div class="photo-placeholder">
+            <span>Jen's Photo</span>
+          </div>
+        </div>
+        <div class="about-bio">
+          <h2>Hello, I'm Jen</h2>
+          <p class="lead">I believe your home should be a reflection of who you are — not a showroom, but a sanctuary.</p>
+          
+          <p>For over a decade, I've been helping clients transform their spaces into places that feel authentically theirs. My journey into interior design began unexpectedly — after years in [previous career], I found myself drawn to the way spaces shape how we feel, work, and connect with the people we love.</p>
+          
+          <p>My approach is simple: listen first, then design. Every project starts with understanding how you actually live. What does your morning routine look like? Where do you gather with family? What frustrates you about your current space? These conversations shape everything that follows.</p>
+          
+          <h3>My Design Philosophy</h3>
+          <p>I'm drawn to spaces that feel collected rather than decorated — rooms that look like they evolved over time, filled with pieces that have meaning. I believe in quality over quantity, in choosing fewer things but choosing them well.</p>
+          
+          <p>While I appreciate timeless elegance, I never want a space to feel precious or untouchable. Homes are meant to be lived in. The best rooms are the ones where you can curl up with a book, where kids can play, where the dog is welcome on the sofa.</p>
+          
+          <h3>Working Together</h3>
+          <p>My clients often describe me as calm, collaborative, and detail-obsessed (in a good way). I take the stress out of the design process so you can enjoy watching your home transform. From initial concept through final styling, I'm there every step of the way.</p>
+          
+          <p>Based in the New York area, I work with clients throughout the tri-state region and beyond. Whether you're renovating a historic home, decorating a new build, or simply refreshing a room that isn't working, I'd love to hear about your project.</p>
+          
+          <div class="about-cta">
+            <a href="/#contact" class="btn">Let's Work Together</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="credentials">
+    <div class="container">
+      <div class="credentials-grid">
+        <div class="credential">
+          <h4>Education</h4>
+          <p>[Design School Name]<br>Interior Design Certificate</p>
+        </div>
+        <div class="credential">
+          <h4>Experience</h4>
+          <p>10+ Years<br>Residential Design</p>
+        </div>
+        <div class="credential">
+          <h4>Location</h4>
+          <p>New York Area<br>Tri-State Region</p>
+        </div>
+        <div class="credential">
+          <h4>Memberships</h4>
+          <p>[ASID, IDS, etc.]<br>Professional Affiliations</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .about-hero {
+    padding: 6rem 0 3rem;
+    text-align: center;
+    background: var(--color-warm-white);
+  }
+  
+  .about-hero h1 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 300;
+    color: var(--color-soft-black);
+  }
+  
+  .about-main {
+    padding: 4rem 0;
+  }
+  
+  .about-page-grid {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  
+  .about-photo {
+    position: sticky;
+    top: 2rem;
+  }
+  
+  .photo-placeholder {
+    aspect-ratio: 3/4;
+    background: linear-gradient(135deg, #d4c5b5 0%, #b8a999 100%);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  
+  .about-bio h2 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 2rem;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+    color: var(--color-soft-black);
+  }
+  
+  .about-bio h3 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin: 2.5rem 0 1rem;
+    color: var(--color-soft-black);
+  }
+  
+  .about-bio p {
+    color: #6b6b6b;
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+    max-width: none;
+  }
+  
+  .about-bio .lead {
+    font-size: 1.2rem;
+    color: var(--color-taupe);
+    font-style: italic;
+    margin-bottom: 2rem;
+  }
+  
+  .about-cta {
+    margin-top: 3rem;
+  }
+  
+  .credentials {
+    padding: 4rem 0;
+    background: var(--color-warm-white);
+  }
+  
+  .credentials-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    text-align: center;
+  }
+  
+  .credential h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--color-taupe);
+    margin-bottom: 0.75rem;
+  }
+  
+  .credential p {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.1rem;
+    color: var(--color-soft-black);
+    line-height: 1.5;
+    max-width: none;
+    margin: 0 auto;
+  }
+  
+  @media (max-width: 900px) {
+    .about-page-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    
+    .about-photo {
+      position: static;
+      max-width: 350px;
+      margin: 0 auto;
+    }
+    
+    .credentials-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 500px) {
+    .credentials-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
