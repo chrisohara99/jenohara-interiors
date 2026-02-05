@@ -5,131 +5,107 @@ import Base from '../layouts/Base.astro';
 <Base title="Home">
   <!-- Hero -->
   <section class="hero">
-    <div class="container hero-content">
-      <h1>Design that feels like home</h1>
-      <p>Creating timeless, elegant spaces that reflect how you live. Interior design services for those who appreciate thoughtful details and understated luxury.</p>
-      <a href="#contact" class="btn">Start Your Project</a>
+    <div class="container-narrow">
+      <h1>Timeless Interiors for Modern Living</h1>
+      <p>At Jen O'Hara Interiors, we create homes that seamlessly blend comfort with elegance—spaces that honor your personal style while embracing the rhythm of everyday life. Based in the New York area, we craft interiors that feel collected, refined, and enduring.</p>
     </div>
   </section>
   
-  <!-- Portfolio -->
-  <section id="portfolio">
-    <div class="container">
-      <div class="section-header">
-        <h2>Selected Work</h2>
-        <p>A glimpse into spaces transformed with intention, warmth, and a refined eye for detail.</p>
-      </div>
-      
-      <!-- Featured Image -->
-      <div class="featured-image">
-        <img src="/images/kitchen-living-open.jpg" alt="Open kitchen and living room" loading="lazy">
-        <div class="featured-overlay"><span>Open Plan Living</span></div>
-      </div>
-      
-      <!-- Masonry Grid -->
-      <div class="masonry-gallery">
-        <div class="masonry-item">
-          <img src="/images/dining-chandelier.jpg" alt="Dining room with chandelier" loading="lazy">
-          <div class="overlay"><span>Formal Dining</span></div>
-        </div>
-        <div class="masonry-item">
-          <img src="/images/vignette-minimal.jpg" alt="Minimalist vignette" loading="lazy">
-          <div class="overlay"><span>Details</span></div>
-        </div>
-        <div class="masonry-item">
-          <img src="/images/kitchen-black-marble.jpg" alt="Modern black kitchen" loading="lazy">
-          <div class="overlay"><span>Modern Kitchen</span></div>
-        </div>
-        <div class="masonry-item">
-          <img src="/images/study-wood.jpg" alt="Wood paneled study" loading="lazy">
-          <div class="overlay"><span>Library</span></div>
-        </div>
-        <div class="masonry-item">
-          <img src="/images/dining-swedish.jpg" alt="Swedish dining room" loading="lazy">
-          <div class="overlay"><span>Gustavian Dining</span></div>
-        </div>
-        <div class="masonry-item">
-          <img src="/images/bathroom-marble.jpg" alt="Marble bathroom" loading="lazy">
-          <div class="overlay"><span>Primary Bath</span></div>
-        </div>
-        <div class="masonry-item">
-          <img src="/images/living-bright.jpg" alt="Bright living room" loading="lazy">
-          <div class="overlay"><span>Living Room</span></div>
-        </div>
-        <div class="masonry-item">
-          <img src="/images/kitchen-oak.jpg" alt="Oak kitchen" loading="lazy">
-          <div class="overlay"><span>Warm Kitchen</span></div>
-        </div>
-        <div class="masonry-item">
-          <img src="/images/fireplace-holiday.jpg" alt="Fireplace detail" loading="lazy">
-          <div class="overlay"><span>Fireplace</span></div>
-        </div>
-        <div class="masonry-item">
-          <img src="/images/dining-farmhouse.jpg" alt="Farmhouse dining" loading="lazy">
-          <div class="overlay"><span>Country Dining</span></div>
-        </div>
-        <div class="masonry-item">
-          <img src="/images/living-room-dog.jpg" alt="Living room" loading="lazy">
-          <div class="overlay"><span>Family Room</span></div>
-        </div>
-      </div>
+  <!-- Quote -->
+  <div class="quote-block">
+    <div class="container-narrow">
+      <blockquote>"A home should feel like a sanctuary—beautiful, yes, but never precious. The best rooms are the ones where life actually happens."</blockquote>
     </div>
-  </section>
+  </div>
   
-  <!-- Services -->
-  <section id="services" style="background:var(--color-warm-white);">
+  <!-- Projects -->
+  <section id="projects" class="section-cream">
     <div class="container">
-      <div class="section-header">
-        <h2>Services</h2>
-        <p>Every project begins with listening. From there, we create spaces that work beautifully for the way you actually live.</p>
-      </div>
-      <div class="services-grid">
-        <div class="service-card">
-          <h3>Full-Service Design</h3>
-          <p>Comprehensive interior design from concept to completion. We handle everything — space planning, selections, procurement, and installation — so you can simply enjoy the transformation.</p>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="image-wrap">
+            <img src="/images/kitchen-living-open.jpg" alt="Greenwich Residence" loading="lazy">
+          </div>
+          <h3>Greenwich</h3>
+          <p>An open-plan renovation blending a chef's kitchen with elegant living spaces, designed for both entertaining and everyday family life.</p>
+          <a href="#" class="btn-text">View Project</a>
         </div>
-        <div class="service-card">
-          <h3>Room Refresh</h3>
-          <p>Focused redesign for a single space that needs attention. Perfect for living rooms, bedrooms, or home offices that aren't quite working.</p>
+        
+        <div class="project-card">
+          <div class="image-wrap">
+            <img src="/images/dining-chandelier.jpg" alt="Westport Colonial" loading="lazy">
+          </div>
+          <h3>Westport</h3>
+          <p>A classic colonial transformed with contemporary sensibility—layering antiques, modern art, and bespoke furnishings throughout.</p>
+          <a href="#" class="btn-text">View Project</a>
         </div>
-        <div class="service-card">
-          <h3>Design Consultation</h3>
-          <p>A two-hour in-home session to discuss your space, challenges, and vision. You'll leave with actionable ideas and a clear direction.</p>
+        
+        <div class="project-card">
+          <div class="image-wrap">
+            <img src="/images/study-wood.jpg" alt="Manhattan Townhouse" loading="lazy">
+          </div>
+          <h3>Manhattan</h3>
+          <p>A wood-paneled library and study bringing warmth and tradition to a historic townhouse, complete with custom millwork.</p>
+          <a href="#" class="btn-text">View Project</a>
+        </div>
+        
+        <div class="project-card">
+          <div class="image-wrap">
+            <img src="/images/kitchen-black-marble.jpg" alt="Darien Modern" loading="lazy">
+          </div>
+          <h3>Darien</h3>
+          <p>A striking kitchen renovation featuring dramatic veined marble, matte black cabinetry, and brass accents for understated luxury.</p>
+          <a href="#" class="btn-text">View Project</a>
+        </div>
+        
+        <div class="project-card">
+          <div class="image-wrap">
+            <img src="/images/dining-swedish.jpg" alt="New Canaan Estate" loading="lazy">
+          </div>
+          <h3>New Canaan</h3>
+          <p>Swedish-inspired elegance with Gustavian antiques, layered neutrals, and carefully curated pieces that feel collected over time.</p>
+          <a href="#" class="btn-text">View Project</a>
+        </div>
+        
+        <div class="project-card">
+          <div class="image-wrap">
+            <img src="/images/bathroom-marble.jpg" alt="Rye Retreat" loading="lazy">
+          </div>
+          <h3>Rye</h3>
+          <p>A spa-like primary bathroom sanctuary in floor-to-ceiling marble, balancing clean minimalism with luxurious comfort.</p>
+          <a href="#" class="btn-text">View Project</a>
         </div>
       </div>
     </div>
   </section>
   
-  <!-- About -->
-  <section id="about">
+  <!-- Designer -->
+  <section class="designer-section">
     <div class="container">
-      <div class="about-grid">
-        <div class="about-image">
-          <img src="/images/living-dog-plants.jpg" alt="Cozy living room detail" style="width:100%;height:100%;object-fit:cover;">
+      <div class="designer-grid">
+        <div class="designer-image">
+          <div style="width:100%;height:100%;background:linear-gradient(135deg, #d4c5b5 0%, #b8a999 100%);display:flex;align-items:center;justify-content:center;color:#888;font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;">Jen's Photo</div>
         </div>
-        <div class="about-content">
-          <h2>Meet Jen</h2>
-          <p>I believe your home should be a reflection of who you are — not a showroom, but a sanctuary. A place that welcomes you at the end of a long day and makes everyday moments feel a little more special.</p>
-          <p>My approach is collaborative and personal. I listen first, then translate your vision into spaces that balance beauty with function, elegance with comfort. Every detail matters, but it should never feel precious.</p>
-          <p>Based in the New York area, I work with clients who appreciate quality, timelessness, and design that doesn't shout — it simply feels right.</p>
+        <div class="designer-content">
+          <h4>Meet the Designer</h4>
+          <h2>Jen O'Hara</h2>
+          <p>With nearly two decades of experience creating beautiful, livable homes, Jen brings a cultivated perspective and deeply personal approach to every project. Her work is guided by the belief that a home should reflect how you actually live—graceful yet functional, elegant yet welcoming.</p>
+          <p>Known for her discerning eye and ability to blend antiques with contemporary pieces, Jen creates interiors that feel collected rather than decorated. Each project is an exercise in balance: honoring tradition while embracing comfort, choosing quality over quantity, and ensuring every detail serves both beauty and purpose.</p>
+          <p>Based in the New York area, she works with clients throughout Connecticut, Westchester, and Manhattan—from complete renovations to thoughtfully curated refreshes.</p>
+          <div style="margin-top: 2rem;">
+            <a href="/about" class="btn">Learn More</a>
+          </div>
         </div>
       </div>
     </div>
   </section>
   
   <!-- Contact -->
-  <section id="contact" class="contact-section">
-    <div class="container">
-      <div class="section-header">
-        <h2>Let's Work Together</h2>
-        <p>Ready to transform your space? I'd love to hear about your project.</p>
-      </div>
-      <div class="contact-info">
-        <a href="mailto:jen@jenoharainteriors.com">jen@jenoharainteriors.com</a>
-      </div>
-      <div style="margin-top:2.5rem;">
-        <a href="mailto:jen@jenoharainteriors.com" class="btn">Get in Touch</a>
-      </div>
+  <section id="contact" class="contact-section section-cream">
+    <div class="container-narrow">
+      <h2>Let's Create Something Beautiful</h2>
+      <p>Ready to transform your space? We'd love to hear about your project and explore how we might work together.</p>
+      <a href="mailto:jen@jenoharainteriors.com" class="contact-email">jen@jenoharainteriors.com</a>
     </div>
   </section>
 </Base>

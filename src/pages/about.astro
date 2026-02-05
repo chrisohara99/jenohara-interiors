@@ -3,198 +3,87 @@ import Base from '../layouts/Base.astro';
 ---
 
 <Base title="About" description="Learn more about Jen O'Hara and her approach to interior design.">
-  <section class="about-hero">
-    <div class="container">
-      <h1>About Jen</h1>
+  <!-- Hero -->
+  <section class="hero" style="min-height: 50vh; padding: 6rem 2rem;">
+    <div class="container-narrow" style="text-align: center;">
+      <h1>About</h1>
     </div>
   </section>
   
-  <section class="about-main">
+  <!-- Bio Section -->
+  <section class="designer-section" style="padding-top: 0;">
     <div class="container">
-      <div class="about-page-grid">
-        <div class="about-photo">
-          <div class="photo-placeholder">
-            <span>Jen's Photo</span>
-          </div>
+      <div class="designer-grid">
+        <div class="designer-image">
+          <div style="width:100%;height:100%;background:linear-gradient(135deg, #d4c5b5 0%, #b8a999 100%);display:flex;align-items:center;justify-content:center;color:#888;font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;">Jen's Photo</div>
         </div>
-        <div class="about-bio">
-          <h2>Hello, I'm Jen</h2>
-          <p class="lead">I believe your home should be a reflection of who you are — not a showroom, but a sanctuary.</p>
-          
-          <p>For over a decade, I've been helping clients transform their spaces into places that feel authentically theirs. My journey into interior design began unexpectedly — after years in [previous career], I found myself drawn to the way spaces shape how we feel, work, and connect with the people we love.</p>
-          
-          <p>My approach is simple: listen first, then design. Every project starts with understanding how you actually live. What does your morning routine look like? Where do you gather with family? What frustrates you about your current space? These conversations shape everything that follows.</p>
-          
-          <h3>My Design Philosophy</h3>
-          <p>I'm drawn to spaces that feel collected rather than decorated — rooms that look like they evolved over time, filled with pieces that have meaning. I believe in quality over quantity, in choosing fewer things but choosing them well.</p>
-          
-          <p>While I appreciate timeless elegance, I never want a space to feel precious or untouchable. Homes are meant to be lived in. The best rooms are the ones where you can curl up with a book, where kids can play, where the dog is welcome on the sofa.</p>
-          
-          <h3>Working Together</h3>
-          <p>My clients often describe me as calm, collaborative, and detail-obsessed (in a good way). I take the stress out of the design process so you can enjoy watching your home transform. From initial concept through final styling, I'm there every step of the way.</p>
-          
-          <p>Based in the New York area, I work with clients throughout the tri-state region and beyond. Whether you're renovating a historic home, decorating a new build, or simply refreshing a room that isn't working, I'd love to hear about your project.</p>
-          
-          <div class="about-cta">
-            <a href="/#contact" class="btn">Let's Work Together</a>
-          </div>
+        <div class="designer-content">
+          <h4>The Designer</h4>
+          <h2>Jen O'Hara</h2>
+          <p>For nearly two decades, I've had the privilege of helping clients transform their houses into homes—spaces that feel authentically theirs, where beauty and everyday life coexist in harmony.</p>
+          <p>My path to interior design wasn't linear. After years in [previous field], I found myself increasingly drawn to the way spaces shape how we feel, work, and connect with the people we love. That curiosity became a calling, and eventually, a career I pour my heart into every day.</p>
+          <p>What drives me is the belief that a home should never feel precious or untouchable. Yes, I obsess over proportions, fabrics, and the perfect shade of white—but always in service of creating rooms where you can actually curl up with a book, where children can play, where the dog is welcome on the sofa.</p>
         </div>
       </div>
     </div>
   </section>
   
-  <section class="credentials">
+  <!-- Quote -->
+  <div class="quote-block">
+    <div class="container-narrow">
+      <blockquote>"I believe the best interiors tell a story—your story. Not a showroom, not a trend report, but a reflection of how you actually live and what you truly love."</blockquote>
+    </div>
+  </div>
+  
+  <!-- Approach -->
+  <section style="padding: 5rem 0;">
+    <div class="container-narrow">
+      <h4 style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--color-taupe); margin-bottom: 1rem; font-family: var(--font-sans); font-weight: 400;">Design Philosophy</h4>
+      <h2 style="margin-bottom: 2rem;">An Approach Built on Listening</h2>
+      
+      <p style="margin-bottom: 1.5rem;">Every project begins with conversation. Before we discuss colors or furniture, I want to understand how you start your mornings, where you gather with family, what frustrates you about your current space. These details shape everything that follows.</p>
+      
+      <p style="margin-bottom: 1.5rem;">I'm drawn to interiors that feel collected rather than decorated—rooms that look like they evolved over time, filled with pieces that have meaning. This means blending antiques with contemporary furniture, mixing high and low, and always choosing quality over quantity.</p>
+      
+      <p style="margin-bottom: 1.5rem;">While I appreciate timeless elegance, I never want a space to feel like a museum. Homes are meant to be lived in. The wear on a vintage table, the patina on brass hardware, the softness of well-loved linen—these are the details that make a house feel like home.</p>
+      
+      <h4 style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--color-taupe); margin: 3rem 0 1rem; font-family: var(--font-sans); font-weight: 400;">Working Together</h4>
+      <h3 style="margin-bottom: 1.5rem;">A Collaborative Process</h3>
+      
+      <p style="margin-bottom: 1.5rem;">My clients often describe me as calm, collaborative, and detail-obsessed (in a good way). I take the stress out of the design process so you can enjoy watching your home transform. From initial concept through final styling, I'm there every step of the way.</p>
+      
+      <p style="margin-bottom: 1.5rem;">Based in the New York area, I work with clients throughout Connecticut, Westchester, and Manhattan. Whether you're renovating a historic home, decorating a new build, or simply refreshing a room that isn't working, I'd love to hear about your project.</p>
+    </div>
+  </section>
+  
+  <!-- Services Preview -->
+  <section class="section-cream" style="padding: 5rem 0;">
     <div class="container">
-      <div class="credentials-grid">
-        <div class="credential">
-          <h4>Education</h4>
-          <p>[Design School Name]<br>Interior Design Certificate</p>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; text-align: center;">
+        <div>
+          <h4 style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--color-taupe); margin-bottom: 0.75rem; font-family: var(--font-sans);">Full-Service Design</h4>
+          <p style="font-size: 0.95rem; max-width: 280px; margin: 0 auto;">Comprehensive design from concept through installation. We handle every detail.</p>
         </div>
-        <div class="credential">
-          <h4>Experience</h4>
-          <p>10+ Years<br>Residential Design</p>
+        <div>
+          <h4 style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--color-taupe); margin-bottom: 0.75rem; font-family: var(--font-sans);">Room Refresh</h4>
+          <p style="font-size: 0.95rem; max-width: 280px; margin: 0 auto;">Focused redesign for a single space that needs new life and direction.</p>
         </div>
-        <div class="credential">
-          <h4>Location</h4>
-          <p>New York Area<br>Tri-State Region</p>
+        <div>
+          <h4 style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--color-taupe); margin-bottom: 0.75rem; font-family: var(--font-sans);">Consultation</h4>
+          <p style="font-size: 0.95rem; max-width: 280px; margin: 0 auto;">In-home session to discuss your space and leave with a clear plan.</p>
         </div>
-        <div class="credential">
-          <h4>Memberships</h4>
-          <p>[ASID, IDS, etc.]<br>Professional Affiliations</p>
-        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Contact CTA -->
+  <section class="contact-section" style="padding: 5rem 0;">
+    <div class="container-narrow">
+      <h2>Let's Talk</h2>
+      <p>Ready to create a home that's truly yours?</p>
+      <div style="margin-top: 2rem;">
+        <a href="mailto:jen@jenoharainteriors.com" class="btn">Get in Touch</a>
       </div>
     </div>
   </section>
 </Base>
-
-<style>
-  .about-hero {
-    padding: 6rem 0 3rem;
-    text-align: center;
-    background: var(--color-warm-white);
-  }
-  
-  .about-hero h1 {
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    font-weight: 300;
-    color: var(--color-soft-black);
-  }
-  
-  .about-main {
-    padding: 4rem 0;
-  }
-  
-  .about-page-grid {
-    display: grid;
-    grid-template-columns: 400px 1fr;
-    gap: 4rem;
-    align-items: start;
-  }
-  
-  .about-photo {
-    position: sticky;
-    top: 2rem;
-  }
-  
-  .photo-placeholder {
-    aspect-ratio: 3/4;
-    background: linear-gradient(135deg, #d4c5b5 0%, #b8a999 100%);
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #666;
-    font-size: 0.9rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
-  
-  .about-bio h2 {
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 2rem;
-    font-weight: 300;
-    margin-bottom: 1.5rem;
-    color: var(--color-soft-black);
-  }
-  
-  .about-bio h3 {
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 1.5rem;
-    font-weight: 400;
-    margin: 2.5rem 0 1rem;
-    color: var(--color-soft-black);
-  }
-  
-  .about-bio p {
-    color: #6b6b6b;
-    line-height: 1.8;
-    margin-bottom: 1.25rem;
-    max-width: none;
-  }
-  
-  .about-bio .lead {
-    font-size: 1.2rem;
-    color: var(--color-taupe);
-    font-style: italic;
-    margin-bottom: 2rem;
-  }
-  
-  .about-cta {
-    margin-top: 3rem;
-  }
-  
-  .credentials {
-    padding: 4rem 0;
-    background: var(--color-warm-white);
-  }
-  
-  .credentials-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
-    text-align: center;
-  }
-  
-  .credential h4 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: var(--color-taupe);
-    margin-bottom: 0.75rem;
-  }
-  
-  .credential p {
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 1.1rem;
-    color: var(--color-soft-black);
-    line-height: 1.5;
-    max-width: none;
-    margin: 0 auto;
-  }
-  
-  @media (max-width: 900px) {
-    .about-page-grid {
-      grid-template-columns: 1fr;
-      gap: 2rem;
-    }
-    
-    .about-photo {
-      position: static;
-      max-width: 350px;
-      margin: 0 auto;
-    }
-    
-    .credentials-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-  
-  @media (max-width: 500px) {
-    .credentials-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-</style>

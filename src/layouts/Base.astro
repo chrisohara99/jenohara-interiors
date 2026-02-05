@@ -16,54 +16,55 @@ const { title, description = "Interior design that transforms spaces into sanctu
   <title>{title} | Jen O'Hara Interiors</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --color-cream: #FAF9F6;
-      --color-warm-white: #FEFDFB;
-      --color-taupe: #8B8178;
-      --color-charcoal: #2C2C2C;
-      --color-soft-black: #1a1a1a;
-      --color-gold: #C9A96E;
-      --color-sage: #9CAF88;
+      --color-bg: #FDFCFA;
+      --color-cream: #F8F6F3;
+      --color-taupe: #9A938B;
+      --color-warm-gray: #6B6560;
+      --color-charcoal: #3D3935;
+      --color-black: #1C1B1A;
+      --color-gold: #B8A88A;
       --font-serif: 'Cormorant Garamond', Georgia, serif;
-      --font-sans: 'Montserrat', -apple-system, sans-serif;
+      --font-sans: 'Jost', -apple-system, sans-serif;
     }
     
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
     
     body {
       font-family: var(--font-sans);
-      background: var(--color-cream);
+      background: var(--color-bg);
       color: var(--color-charcoal);
-      line-height: 1.7;
+      line-height: 1.8;
       font-weight: 300;
+      font-size: 16px;
     }
     
     .container {
-      max-width: 1400px;
+      max-width: 1300px;
       margin: 0 auto;
-      padding: 0 2rem;
+      padding: 0 3rem;
+    }
+    
+    .container-narrow {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 3rem;
     }
     
     /* Header */
     header {
       padding: 1.5rem 0;
-      background: var(--color-warm-white);
-      border-bottom: 1px solid rgba(0,0,0,0.05);
-      overflow: visible;
-    }
-    
-    .logo img {
-      display: block;
+      background: var(--color-bg);
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(0,0,0,0.04);
     }
     
     .header-inner {
@@ -74,15 +75,11 @@ const { title, description = "Interior design that transforms spaces into sanctu
     
     .logo {
       font-family: var(--font-serif);
-      font-size: 1.75rem;
-      font-weight: 300;
-      color: var(--color-soft-black);
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--color-black);
       text-decoration: none;
       letter-spacing: 0.02em;
-    }
-    
-    .logo span {
-      font-weight: 500;
     }
     
     nav {
@@ -95,86 +92,178 @@ const { title, description = "Interior design that transforms spaces into sanctu
       font-size: 0.8rem;
       font-weight: 400;
       text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: var(--color-taupe);
+      letter-spacing: 0.12em;
+      color: var(--color-warm-gray);
       text-decoration: none;
       transition: color 0.3s ease;
     }
     
-    nav a:hover {
-      color: var(--color-soft-black);
-    }
+    nav a:hover { color: var(--color-black); }
     
-    /* Main Content */
-    main {
-      min-height: 70vh;
-    }
+    /* Main */
+    main { padding-top: 80px; }
     
     /* Typography */
-    h1, h2, h3 {
+    h1, h2, h3, h4 {
       font-family: var(--font-serif);
-      font-weight: 300;
-      line-height: 1.3;
-    }
-    
-    h1 {
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      margin-bottom: 1.5rem;
-    }
-    
-    h2 {
-      font-size: clamp(1.75rem, 3vw, 2.5rem);
-      margin-bottom: 1rem;
-    }
-    
-    h3 {
-      font-size: 1.25rem;
       font-weight: 400;
+      line-height: 1.3;
+      color: var(--color-black);
     }
+    
+    h1 { font-size: clamp(2.5rem, 5vw, 3.5rem); }
+    h2 { font-size: clamp(2rem, 4vw, 2.75rem); }
+    h3 { font-size: 1.5rem; }
+    h4 { font-size: 1.1rem; font-weight: 500; }
     
     p {
-      font-size: 1rem;
-      color: var(--color-taupe);
-      max-width: 600px;
+      color: var(--color-warm-gray);
+      max-width: 650px;
     }
     
     /* Sections */
-    section {
-      padding: 6rem 0;
-    }
+    section { padding: 6rem 0; }
     
-    .section-header {
-      text-align: center;
-      margin-bottom: 4rem;
-    }
-    
-    .section-header p {
-      margin: 0 auto;
-    }
+    .section-cream { background: var(--color-cream); }
     
     /* Hero */
     .hero {
-      min-height: 70vh;
+      min-height: 90vh;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      background: linear-gradient(to bottom, var(--color-warm-white), var(--color-cream));
-    }
-    
-    .hero-content {
-      max-width: 800px;
+      padding: 8rem 2rem;
     }
     
     .hero h1 {
-      font-size: clamp(2.5rem, 6vw, 4.5rem);
       margin-bottom: 1.5rem;
-      color: var(--color-soft-black);
+      font-weight: 300;
     }
     
     .hero p {
-      font-size: 1.125rem;
-      margin: 0 auto 2.5rem;
+      font-size: 1.1rem;
+      margin: 0 auto;
+      line-height: 1.9;
+    }
+    
+    /* Quote Block */
+    .quote-block {
+      padding: 5rem 0;
+      text-align: center;
+      border-top: 1px solid rgba(0,0,0,0.06);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+    
+    .quote-block blockquote {
+      font-family: var(--font-serif);
+      font-size: clamp(1.25rem, 2.5vw, 1.6rem);
+      font-style: italic;
+      font-weight: 300;
+      color: var(--color-charcoal);
+      max-width: 850px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+    
+    /* Projects Grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    
+    .project-card {
+      text-align: center;
+    }
+    
+    .project-card .image-wrap {
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+      background: var(--color-cream);
+    }
+    
+    .project-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s ease;
+    }
+    
+    .project-card:hover img {
+      transform: scale(1.04);
+    }
+    
+    .project-card h3 {
+      font-size: 1.35rem;
+      margin-bottom: 0.75rem;
+      font-weight: 400;
+    }
+    
+    .project-card p {
+      font-size: 0.95rem;
+      margin: 0 auto 1.25rem;
+      max-width: 320px;
+      line-height: 1.7;
+    }
+    
+    .project-card .btn-text {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--color-charcoal);
+      text-decoration: none;
+      border-bottom: 1px solid var(--color-gold);
+      padding-bottom: 2px;
+      transition: color 0.3s, border-color 0.3s;
+    }
+    
+    .project-card .btn-text:hover {
+      color: var(--color-gold);
+    }
+    
+    /* Designer Section */
+    .designer-section {
+      padding: 7rem 0;
+    }
+    
+    .designer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    
+    .designer-image {
+      aspect-ratio: 3/4;
+      background: var(--color-cream);
+      overflow: hidden;
+    }
+    
+    .designer-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .designer-content h4 {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--color-taupe);
+      margin-bottom: 1rem;
+      font-family: var(--font-sans);
+      font-weight: 400;
+    }
+    
+    .designer-content h2 {
+      margin-bottom: 1.5rem;
+    }
+    
+    .designer-content p {
+      margin-bottom: 1.25rem;
+      max-width: none;
     }
     
     /* Buttons */
@@ -182,243 +271,80 @@ const { title, description = "Interior design that transforms spaces into sanctu
       display: inline-block;
       font-family: var(--font-sans);
       font-size: 0.75rem;
-      font-weight: 500;
+      font-weight: 400;
       text-transform: uppercase;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.15em;
       padding: 1rem 2.5rem;
-      border: 1px solid var(--color-soft-black);
+      border: 1px solid var(--color-black);
       background: transparent;
-      color: var(--color-soft-black);
+      color: var(--color-black);
       text-decoration: none;
       transition: all 0.3s ease;
-      cursor: pointer;
     }
     
     .btn:hover {
-      background: var(--color-soft-black);
-      color: var(--color-cream);
-    }
-    
-    /* Featured Image */
-    .featured-image {
-      position: relative;
-      width: 100%;
-      max-height: 500px;
-      overflow: hidden;
-      border-radius: 4px;
-      margin-bottom: 1.5rem;
-    }
-    
-    .featured-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.6s ease;
-    }
-    
-    .featured-image:hover img {
-      transform: scale(1.02);
-    }
-    
-    .featured-overlay {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 2rem;
-      background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 100%);
-    }
-    
-    .featured-overlay span {
-      color: white;
-      font-family: var(--font-serif);
-      font-size: 1.5rem;
-      font-weight: 300;
-    }
-    
-    /* Masonry Gallery */
-    .masonry-gallery {
-      columns: 4;
-      column-gap: 0.75rem;
-    }
-    
-    .masonry-item {
-      break-inside: avoid;
-      margin-bottom: 0.75rem;
-      position: relative;
-      overflow: hidden;
-      border-radius: 3px;
-    }
-    
-    .masonry-item img {
-      width: 100%;
-      display: block;
-      transition: transform 0.6s ease;
-    }
-    
-    .masonry-item:hover img {
-      transform: scale(1.03);
-    }
-    
-    .masonry-item .overlay {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 1rem 0.75rem;
-      background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 100%);
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-    
-    .masonry-item:hover .overlay {
-      opacity: 1;
-    }
-    
-    .masonry-item .overlay span {
-      color: white;
-      font-family: var(--font-serif);
-      font-size: 1rem;
-      font-weight: 300;
-    }
-    
-    /* Services */
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 3rem;
-    }
-    
-    .service-card {
-      text-align: center;
-      padding: 2rem;
-    }
-    
-    .service-card h3 {
-      margin-bottom: 1rem;
-      color: var(--color-soft-black);
-    }
-    
-    .service-card p {
-      margin: 0 auto;
-      font-size: 0.95rem;
-    }
-    
-    /* About */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-    
-    .about-image {
-      aspect-ratio: 3/4;
-      background: var(--color-taupe);
-      border-radius: 4px;
-      overflow: hidden;
-    }
-    
-    .about-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    
-    .about-content h2 {
-      margin-bottom: 1.5rem;
-    }
-    
-    .about-content p {
-      margin-bottom: 1.5rem;
-      max-width: none;
+      background: var(--color-black);
+      color: var(--color-bg);
     }
     
     /* Contact */
     .contact-section {
-      background: var(--color-warm-white);
       text-align: center;
+      padding: 7rem 0;
     }
     
-    .contact-info {
-      margin-top: 2rem;
+    .contact-section h2 { margin-bottom: 1rem; }
+    
+    .contact-section p {
+      margin: 0 auto 2rem;
     }
     
-    .contact-info a {
-      color: var(--color-taupe);
+    .contact-email {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      color: var(--color-charcoal);
       text-decoration: none;
-      font-size: 1.125rem;
-      transition: color 0.3s;
+      border-bottom: 1px solid var(--color-gold);
     }
     
-    .contact-info a:hover {
-      color: var(--color-soft-black);
-    }
+    .contact-email:hover { color: var(--color-gold); }
     
     /* Footer */
     footer {
-      padding: 3rem 0;
+      padding: 2.5rem 0;
       text-align: center;
-      border-top: 1px solid rgba(0,0,0,0.05);
+      border-top: 1px solid rgba(0,0,0,0.06);
     }
     
     footer p {
       font-size: 0.8rem;
+      color: var(--color-taupe);
       margin: 0 auto;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.03em;
     }
     
     /* Responsive */
-    @media (max-width: 1200px) {
-      .masonry-gallery {
-        columns: 3;
-      }
-    }
-    
-    @media (max-width: 900px) {
-      .masonry-gallery {
-        columns: 2;
-      }
+    @media (max-width: 1024px) {
+      .projects-grid { grid-template-columns: repeat(2, 1fr); }
+      .designer-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .designer-image { max-width: 450px; margin: 0 auto; }
     }
     
     @media (max-width: 768px) {
-      .header-inner {
-        flex-direction: column;
-        gap: 1.5rem;
-      }
-      
-      nav {
-        gap: 1.5rem;
-      }
-      
-      .about-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .masonry-gallery {
-        columns: 2;
-        column-gap: 0.5rem;
-      }
-      
-      .masonry-item {
-        margin-bottom: 0.5rem;
-      }
-      
-      .featured-image {
-        max-height: 300px;
-      }
+      .container, .container-narrow { padding: 0 1.5rem; }
+      .header-inner { flex-direction: column; gap: 1rem; }
+      nav { gap: 1.5rem; }
+      .projects-grid { grid-template-columns: 1fr; max-width: 450px; margin: 0 auto; }
+      section { padding: 4rem 0; }
     }
   </style>
 </head>
 <body>
   <header>
     <div class="container header-inner">
-      <a href="/" class="logo"><img src="/images/logo.svg" alt="Jen O'Hara Interiors" style="height: 85px; width: auto;"></a>
+      <a href="/" class="logo">Jen O'Hara Interiors</a>
       <nav>
-        <a href="/#portfolio">Portfolio</a>
-        <a href="/#services">Services</a>
+        <a href="/#projects">Projects</a>
         <a href="/about">About</a>
         <a href="/#contact">Contact</a>
       </nav>
