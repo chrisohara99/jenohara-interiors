@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>47 Lloyd Lane | Lloyd Harbor | Jen O'Hara Interiors</title>
+    <meta name="description" content="A fully renovated Nantucket-style colonial on 2.35 private acres in Lloyd Harbor. Main residence with guest cottage, pool, and hot tub.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #FAF8F5;
+            --warm-white: #FFFDF9;
+            --charcoal: #2C2C2C;
+            --taupe: #8B7E74;
+            --gold: #C9A96E;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
+            color: var(--charcoal);
+            background: var(--warm-white);
+            letter-spacing: 0.02em;
+            line-height: 1.7;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+        }
+        
+        /* Header */
+        .site-header {
+            padding: 25px 50px;
+            background: var(--warm-white);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(139, 126, 116, 0.1);
+        }
+        
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            letter-spacing: 0.15em;
+            color: var(--charcoal);
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+        
+        .logo:hover {
+            color: var(--taupe);
+        }
+        
+        /* Hero */
+        .hero {
+            height: 100vh;
+            background: url('images/lloyd-harbor/aerial-property.jpg') center center / cover no-repeat;
+            display: flex;
+            align-items: flex-end;
+            padding: 80px 50px;
+            margin-top: 0;
+        }
+        
+        .hero-content {
+            background: rgba(255, 253, 249, 0.95);
+            padding: 50px 60px;
+            max-width: 600px;
+        }
+        
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+        
+        .hero .address {
+            font-size: 0.85rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--taupe);
+            margin-bottom: 20px;
+        }
+        
+        .hero .tagline {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-style: italic;
+            color: var(--taupe);
+        }
+        
+        /* Property Details */
+        .details-section {
+            padding: 100px 50px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+        
+        .details-text h2 {
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+        }
+        
+        .details-text p {
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+        
+        .specs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .spec-item {
+            border-left: 2px solid var(--gold);
+            padding-left: 20px;
+        }
+        
+        .spec-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--taupe);
+            margin-bottom: 5px;
+        }
+        
+        .spec-value {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+        }
+        
+        .details-image img {
+            width: 100%;
+            height: auto;
+        }
+        
+        /* Gallery */
+        .gallery-section {
+            padding: 50px;
+            background: var(--cream);
+        }
+        
+        .gallery-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 50px;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .gallery-item {
+            aspect-ratio: 4/3;
+            overflow: hidden;
+        }
+        
+        .gallery-item.tall {
+            grid-row: span 2;
+            aspect-ratio: auto;
+        }
+        
+        .gallery-item.wide {
+            grid-column: span 2;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* Features */
+        .features-section {
+            padding: 100px 50px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .features-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 60px;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px 80px;
+        }
+        
+        .feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        
+        .feature-icon {
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+            color: var(--gold);
+        }
+        
+        .feature-text {
+            font-size: 0.95rem;
+        }
+        
+        /* Contact CTA */
+        .contact-section {
+            padding: 100px 50px;
+            background: var(--charcoal);
+            color: var(--warm-white);
+            text-align: center;
+        }
+        
+        .contact-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--warm-white);
+        }
+        
+        .contact-section .subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-style: italic;
+            color: var(--taupe);
+            margin-bottom: 40px;
+        }
+        
+        .contact-button {
+            display: inline-block;
+            padding: 18px 50px;
+            border: 1px solid var(--gold);
+            color: var(--warm-white);
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-button:hover {
+            background: var(--gold);
+            color: var(--charcoal);
+        }
+        
+        /* Footer */
+        .site-footer {
+            padding: 40px 50px;
+            text-align: center;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            color: var(--taupe);
+        }
+        
+        .site-footer a {
+            color: var(--taupe);
+            text-decoration: none;
+        }
+        
+        .site-footer a:hover {
+            color: var(--charcoal);
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .details-grid {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .site-header {
+                padding: 20px 25px;
+            }
+            
+            .hero {
+                padding: 30px 25px;
+            }
+            
+            .hero-content {
+                padding: 30px 35px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .details-section,
+            .features-section,
+            .gallery-section,
+            .contact-section {
+                padding: 60px 25px;
+            }
+            
+            .specs {
+                grid-template-columns: 1fr;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .gallery-item.tall,
+            .gallery-item.wide {
+                grid-row: auto;
+                grid-column: auto;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <a href="index.html" class="logo">Jen O'Hara Interiors</a>
+    </header>
+    
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <p class="address">Lloyd Harbor, New York</p>
+            <h1>47 Lloyd Lane</h1>
+            <p class="tagline">A fully renovated sanctuary on 2.35 private acres</p>
+        </div>
+    </section>
+    
+    <!-- Property Details -->
+    <section class="details-section">
+        <div class="details-grid">
+            <div class="details-text">
+                <h2>Modern Living, Timeless Character</h2>
+                <p>This quintessential Nantucket-style colonial has been thoughtfully reimagined for contemporary living while preserving its classic architectural heritage. Every detail reflects a commitment to quality craftsmanship and enduring design.</p>
+                <p>Set on 2.35 acres of beautifully landscaped grounds, the property offers complete privacy while remaining minutes from the village and Long Island Sound beaches.</p>
+                
+                <div class="specs">
+                    <div class="spec-item">
+                        <div class="spec-label">Main Residence</div>
+                        <div class="spec-value">3 Bed / 3 Bath</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Guest Cottage</div>
+                        <div class="spec-value">1 Bed / 1 Bath</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Property</div>
+                        <div class="spec-value">2.35 Acres</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Price</div>
+                        <div class="spec-value">Upon Request</div>
+                    </div>
+                </div>
+            </div>
+            <div class="details-image">
+                <img src="images/lloyd-harbor/entrance-colonial.jpg" alt="Colonial entrance with Corinthian columns">
+            </div>
+        </div>
+    </section>
+    
+    <!-- Gallery -->
+    <section class="gallery-section">
+        <h2>The Residence</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item wide">
+                <img src="images/lloyd-harbor/kitchen.jpg" alt="Kitchen with Calacatta marble island">
+            </div>
+            <div class="gallery-item">
+                <img src="images/lloyd-harbor/living-room-fireplace.jpg" alt="Living room with vaulted ceiling and fireplace">
+            </div>
+            <div class="gallery-item">
+                <img src="images/lloyd-harbor/living-room-skylights.jpg" alt="Living room with skylights">
+            </div>
+            <div class="gallery-item">
+                <img src="images/lloyd-harbor/bath-master-tub.jpg" alt="Primary bathroom with soaking tub">
+            </div>
+            <div class="gallery-item">
+                <img src="images/lloyd-harbor/bath-master-shower.jpg" alt="Primary bathroom walk-in shower">
+            </div>
+            <div class="gallery-item">
+                <img src="images/lloyd-harbor/bedroom-primary.jpg" alt="Primary bedroom">
+            </div>
+            <div class="gallery-item">
+                <img src="images/lloyd-harbor/bedroom-2.jpg" alt="Bedroom with ocean artwork">
+            </div>
+            <div class="gallery-item">
+                <img src="images/lloyd-harbor/bath-guest-brass.jpg" alt="Guest bathroom with brass fixtures">
+            </div>
+            <div class="gallery-item">
+                <img src="images/lloyd-harbor/hallway-closets.jpg" alt="Hallway with custom closets">
+            </div>
+            <div class="gallery-item wide">
+                <img src="images/lloyd-harbor/cottage-exterior.jpg" alt="Guest cottage exterior">
+            </div>
+            <div class="gallery-item">
+                <img src="images/lloyd-harbor/aerial-top-down.jpg" alt="Aerial view of property">
+            </div>
+        </div>
+    </section>
+    
+    <!-- Features -->
+    <section class="features-section">
+        <h2>Highlights</h2>
+        <div class="features-grid">
+            <div class="feature">
+                <svg class="feature-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 13l4 4L19 7"></path></svg>
+                <span class="feature-text">Complete renovation with high-end finishes throughout</span>
+            </div>
+            <div class="feature">
+                <svg class="feature-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 13l4 4L19 7"></path></svg>
+                <span class="feature-text">Chef's kitchen with Calacatta marble and custom cabinetry</span>
+            </div>
+            <div class="feature">
+                <svg class="feature-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 13l4 4L19 7"></path></svg>
+                <span class="feature-text">Spa-inspired marble bathrooms</span>
+            </div>
+            <div class="feature">
+                <svg class="feature-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 13l4 4L19 7"></path></svg>
+                <span class="feature-text">New cedar shake roof</span>
+            </div>
+            <div class="feature">
+                <svg class="feature-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 13l4 4L19 7"></path></svg>
+                <span class="feature-text">Detached guest cottage with full bath</span>
+            </div>
+            <div class="feature">
+                <svg class="feature-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 13l4 4L19 7"></path></svg>
+                <span class="feature-text">Heated pool and hot tub</span>
+            </div>
+            <div class="feature">
+                <svg class="feature-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 13l4 4L19 7"></path></svg>
+                <span class="feature-text">Vaulted great room with skylights and fireplace</span>
+            </div>
+            <div class="feature">
+                <svg class="feature-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 13l4 4L19 7"></path></svg>
+                <span class="feature-text">Minutes to Lloyd Harbor beaches and village</span>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact -->
+    <section class="contact-section">
+        <h2>Private Listing</h2>
+        <p class="subtitle">Available by appointment for qualified buyers</p>
+        <a href="mailto:jen@jenoharainteriors.com?subject=47 Lloyd Lane Inquiry" class="contact-button">Request Information</a>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="site-footer">
+        <p>Design by <a href="index.html">Jen O'Hara Interiors</a> · Lloyd Harbor, New York</p>
+    </footer>
+</body>
+</html>
