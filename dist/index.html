@@ -257,6 +257,20 @@
             opacity: 0.8;
         }
         
+        .room-category {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 400;
+            text-align: center;
+            margin: 60px 0 30px 0;
+            color: var(--charcoal);
+            letter-spacing: 0.1em;
+        }
+        
+        .room-category:first-of-type {
+            margin-top: 0;
+        }
+        
         /* About Section */
         .about-grid {
             display: grid;
@@ -441,49 +455,99 @@
                 <h2>Selected Work</h2>
                 <p>A collection of residential projects throughout Long Island and the New York area</p>
             </div>
+            
+            <!-- Living Rooms -->
+            <h3 class="room-category" data-anima="fade-bottom" data-time="1000">Living Rooms</h3>
             <div class="portfolio-grid">
-                <a href="lloyd-harbor.html" class="portfolio-item" data-anima="fade-bottom" data-time="1000" style="text-decoration: none;">
-                    <img src="images/lloyd-harbor/living-room-fireplace.jpg" alt="Lloyd Harbor Living Room">
-                    <div class="portfolio-overlay">
-                        <span>Featured Project</span>
-                        <h4>47 Lloyd Lane</h4>
-                    </div>
-                </a>
-                <a href="lloyd-harbor.html" class="portfolio-item" data-anima="fade-bottom" data-time="1000" data-delay="100" style="text-decoration: none;">
-                    <img src="images/lloyd-harbor/kitchen-island-marble.jpg" alt="Lloyd Harbor Kitchen">
-                    <div class="portfolio-overlay">
-                        <span>Kitchen</span>
-                        <h4>Lloyd Harbor</h4>
-                    </div>
-                </a>
-                <a href="lloyd-harbor.html" class="portfolio-item" data-anima="fade-bottom" data-time="1000" data-delay="200" style="text-decoration: none;">
-                    <img src="images/lloyd-harbor/cottage-living-room.jpg" alt="Guest Cottage">
-                    <div class="portfolio-overlay">
-                        <span>Guest Cottage</span>
-                        <h4>Lloyd Harbor</h4>
-                    </div>
-                </a>
                 <div class="portfolio-item" data-anima="fade-bottom" data-time="1000">
-                    <img src="images/portfolio/entry-portico.jpg" alt="Classic Entry">
-                    <div class="portfolio-overlay">
-                        <span>Entry</span>
-                        <h4>Cold Spring Harbor</h4>
-                    </div>
+                    <img src="images/lloyd-harbor/living-room-fireplace.jpg" alt="Living room with fireplace and white paneling">
                 </div>
                 <div class="portfolio-item" data-anima="fade-bottom" data-time="1000" data-delay="100">
-                    <img src="images/portfolio/living-room-holiday.jpg" alt="Living Room">
-                    <div class="portfolio-overlay">
-                        <span>Living Room</span>
-                        <h4>Cold Spring Harbor</h4>
-                    </div>
+                    <img src="images/lloyd-harbor/living-room-wide.jpg" alt="Open living room with bay window breakfast nook">
                 </div>
                 <div class="portfolio-item" data-anima="fade-bottom" data-time="1000" data-delay="200">
-                    <img src="images/portfolio/kitchen-dining.jpg" alt="Kitchen and Dining">
-                    <div class="portfolio-overlay">
-                        <span>Kitchen & Dining</span>
-                        <h4>Cold Spring Harbor</h4>
-                    </div>
+                    <img src="images/lloyd-harbor/living-room-staircase.jpg" alt="Living room with staircase">
                 </div>
+                <div class="portfolio-item" data-anima="fade-bottom" data-time="1000">
+                    <img src="images/lloyd-harbor/cottage-living-room.jpg" alt="Cottage living room with vaulted ceiling">
+                </div>
+                <div class="portfolio-item" data-anima="fade-bottom" data-time="1000" data-delay="100">
+                    <img src="images/portfolio/living-swedish-cabinet.jpg" alt="Swedish-inspired living room">
+                </div>
+                <div class="portfolio-item" data-anima="fade-bottom" data-time="1000" data-delay="200">
+                    <img src="images/living-dog-plants.jpg" alt="Cozy living room with plants">
+                </div>
+            </div>
+            
+            <!-- Kitchens -->
+            <h3 class="room-category" data-anima="fade-bottom" data-time="1000">Kitchens</h3>
+            <div class="portfolio-grid">
+                <div class="portfolio-item" data-anima="fade-bottom" data-time="1000">
+                    <img src="images/lloyd-harbor/kitchen-island-marble.jpg" alt="Kitchen with Calacatta marble island">
+                </div>
+                <div class="portfolio-item" data-anima="fade-bottom" data-time="1000" data-delay="100">
+                    <img src="images/lloyd-harbor/kitchen-side-angle.jpg" alt="Modern kitchen with brass fixtures">
+                </div>
+                <div class="portfolio-item" data-anima="fade-bottom" data-time="1000" data-delay="200">
+                    <img src="images/lloyd-harbor/kitchen-from-living.jpg" alt="Open kitchen from living room">
+                </div>
+                <div class="portfolio-item" data-anima="fade-bottom" data-time="1000">
+                    <img src="images/lloyd-harbor/wet-bar-pantry.jpg" alt="Wet bar with black marble">
+                </div>
+                <div class="portfolio-item" data-anima="fade-bottom" data-time="1000" data-delay="100">
+                    <img src="images/kitchen-black-marble.jpg" alt="Kitchen with black marble">
+                </div>
+                <div class="portfolio-item" data-anima="fade-bottom" data-time="1000" data-delay="200">
+                    <img src="images/kitchen-oak.jpg" alt="Kitchen with oak cabinetry">
+                </div>
+            </div>
+            
+            <!-- Dining Rooms -->
+            <h3 class="room-category" data-anima="fade-bottom" data-time="1000">Dining Rooms</h3>
+            <div class="portfolio-grid">
+                <div class="portfolio-item" data-anima="fade-bottom" data-time="1000">
+                    <img src="images/lloyd-harbor/dining-room.jpg" alt="Formal dining room">
+                </div>
+                <div class="portfolio-item" data-anima="fade-bottom" data-time="1000" data-delay="100">
+                    <img src="images/dining-chandelier.jpg" alt="Dining room with chandelier">
+                </div>
+                <div class="portfolio-item" data-anima="fade-bottom" data-time="1000" data-delay="200">
+                    <img src="images/dining-swedish.jpg" alt="Swedish-style dining room">
+                </div>
+            </div>
+            
+            <!-- Bathrooms -->
+            <h3 class="room-category" data-anima="fade-bottom" data-time="1000">Bathrooms</h3>
+            <div class="portfolio-grid">
+                <div class="portfolio-item" data-anima="fade-bottom" data-time="1000">
+                    <img src="images/lloyd-harbor/primary-bathroom.jpg" alt="Primary bathroom with soaking tub">
+                </div>
+                <div class="portfolio-item" data-anima="fade-bottom" data-time="1000" data-delay="100">
+                    <img src="images/bathroom-marble.jpg" alt="Marble bathroom">
+                </div>
+                <div class="portfolio-item" data-anima="fade-bottom" data-time="1000" data-delay="200">
+                    <img src="images/bathroom-black.jpg" alt="Modern black bathroom">
+                </div>
+            </div>
+            
+            <!-- Bedrooms -->
+            <h3 class="room-category" data-anima="fade-bottom" data-time="1000">Bedrooms</h3>
+            <div class="portfolio-grid">
+                <div class="portfolio-item" data-anima="fade-bottom" data-time="1000">
+                    <img src="images/lloyd-harbor/primary-bedroom.jpg" alt="Serene primary bedroom">
+                </div>
+                <div class="portfolio-item" data-anima="fade-bottom" data-time="1000" data-delay="100">
+                    <img src="images/bedroom-blue.jpg" alt="Blue accent bedroom">
+                </div>
+                <div class="portfolio-item" data-anima="fade-bottom" data-time="1000" data-delay="200">
+                    <img src="images/study-wood.jpg" alt="Wood-paneled study">
+                </div>
+            </div>
+            
+            <!-- Featured Project CTA -->
+            <div style="text-align: center; margin-top: 60px;" data-anima="fade-bottom" data-time="1000">
+                <p style="color: var(--taupe); margin-bottom: 20px; font-size: 0.9rem; letter-spacing: 0.1em;">FEATURED PROJECT</p>
+                <a href="lloyd-harbor.html" class="btn-elegant">View 47 Lloyd Lane →</a>
             </div>
         </div>
     </section>
