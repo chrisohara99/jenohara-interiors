@@ -404,7 +404,7 @@
                     
                     <div class="form-group">
                         <label>Purchase Price</label>
-                        <input type="number" id="housePrice" value="850000" step="50000">
+                        <input type="number" id="housePrice" value="1480000" step="50000">
                     </div>
 
                     <div class="form-group">
@@ -415,7 +415,7 @@
                                 <div style="font-size: 11px; color: var(--text-light); margin-top: 4px;">Percentage</div>
                             </div>
                             <div>
-                                <input type="number" id="downPaymentAmount" value="212500" step="10000" placeholder="$">
+                                <input type="number" id="downPaymentAmount" value="370000" step="10000" placeholder="$">
                                 <div style="font-size: 11px; color: var(--text-light); margin-top: 4px;">Dollar Amount</div>
                             </div>
                         </div>
@@ -517,7 +517,7 @@
                     
                     <div class="calculation-row">
                         <div class="label">Down Payment</div>
-                        <div class="value negative" id="proceedsDownPayment">-$212,500</div>
+                        <div class="value negative" id="proceedsDownPayment">-$370,000</div>
                     </div>
                     <div class="calculation-row">
                         <div class="label">Debt Paydown</div>
@@ -645,6 +645,10 @@
                             <tr>
                                 <td class="expense-name">PSEG</td>
                                 <td class="expense-amount negative">-$250.00</td>
+                            </tr>
+                            <tr>
+                                <td class="expense-name">Renovation Expenses</td>
+                                <td class="expense-amount negative"><input type="number" id="renovationExpenses" value="0" step="500" min="0" style="width: 100px; text-align: right; padding: 4px 8px; font-size: 13px; color: #e74c3c;"></td>
                             </tr>
                             <tr class="section-header">
                                 <td colspan="2">Vehicles & Insurance</td>
@@ -932,6 +936,7 @@
         const BASE_MONTHLY_INCOME = 23324;
         const hardForkInput = document.getElementById('hardForkIncome');
         const mortgagePrePayInput = document.getElementById('mortgagePrePay');
+        const renovationExpensesInput = document.getElementById('renovationExpenses');
         const creditCardBalanceInput = document.getElementById('creditCardBalance');
         const creditCardRateInput = document.getElementById('creditCardRate');
         const irsBalanceInput = document.getElementById('irsBalance');
@@ -1086,13 +1091,14 @@
             // Calculate net cash
             const hardForkPay = parseFloat(hardForkInput.value) || 0;
             const mortgagePrePay = parseFloat(mortgagePrePayInput.value) || 0;
+            const renovationExpenses = parseFloat(renovationExpensesInput.value) || 0;
             const stockContribution = parseFloat(monthlyStockInput.value) || 0;
             const wakeForestPayment = parseFloat(wakeForestInput.value) || 0;
             const poolPayment = parseFloat(poolInput.value) || 0;
             const loanPayment = parseFloat(loanInput.value) || 0;
             const boatPayment = parseFloat(boatInput.value) || 0;
             const landscapingPayment = parseFloat(landscapingInput.value) || 0;
-            const totalMonthlyHousingExpense = monthlyMortgage + monthlyTaxIns + mortgagePrePay;
+            const totalMonthlyHousingExpense = monthlyMortgage + monthlyTaxIns + mortgagePrePay + renovationExpenses;
             const totalMonthlyExpenses = FIXED_EXPENSES + totalMonthlyHousingExpense + stockContribution + wakeForestPayment + poolPayment + loanPayment + boatPayment + landscapingPayment + monthlyDebtPmt;
             const MONTHLY_INCOME = BASE_MONTHLY_INCOME + hardForkPay;
             const monthlyNet = MONTHLY_INCOME - totalMonthlyExpenses;
@@ -1221,6 +1227,7 @@
         debtPaydownInput.addEventListener('input', updateCalculations);
         hardForkInput.addEventListener('input', updateCalculations);
         mortgagePrePayInput.addEventListener('input', updateCalculations);
+        renovationExpensesInput.addEventListener('input', updateCalculations);
 
         // Initial calculation
         updateCalculations();
