@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post-Downsizing Cash Flow Planner</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0f3a5f;
+            --secondary: #2a7a9a;
+            --accent: #f39c12;
+            --success: #27ae60;
+            --danger: #e74c3c;
+            --light-bg: #f8f9fa;
+            --border: #e0e0e0;
+            --text-dark: #2c3e50;
+            --text-light: #7f8c8d;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--text-dark);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            padding: 40px;
+        }
+
+        @media (max-width: 1024px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .section {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 30px;
+            background: var(--light-bg);
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 24px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 12px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .input-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        input[type="number"],
+        input[type="range"],
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: 'Menlo', 'Monaco', monospace;
+            transition: border-color 0.2s;
+        }
+
+        input[type="number"]:focus,
+        input[type="text"]:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(42, 122, 154, 0.1);
+        }
+
+        input[type="range"] {
+            padding: 0;
+            height: 6px;
+            background: var(--border);
+            border: none;
+            border-radius: 3px;
+            -webkit-appearance: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--secondary);
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        input[type="range"]::-webkit-slider-thumb:hover {
+            background: var(--primary);
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--secondary);
+            cursor: pointer;
+            border: none;
+            transition: background 0.2s;
+        }
+
+        input[type="range"]::-moz-range-thumb:hover {
+            background: var(--primary);
+        }
+
+        .range-display {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: var(--text-light);
+            margin-top: 4px;
+        }
+
+        .calculation-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 16px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 14px;
+        }
+
+        .calculation-row:last-child {
+            border-bottom: none;
+        }
+
+        .calculation-row.total {
+            border-top: 2px solid var(--accent);
+            border-bottom: none;
+            font-weight: 700;
+            padding-top: 12px;
+            margin-top: 12px;
+        }
+
+        .calculation-row.total .label {
+            color: var(--primary);
+        }
+
+        .label {
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .value {
+            text-align: right;
+            font-family: 'Menlo', 'Monaco', monospace;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .value.positive {
+            color: var(--success);
+        }
+
+        .value.negative {
+            color: var(--danger);
+        }
+
+        .summary-card {
+            background: white;
+            border: 2px solid var(--secondary);
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .summary-card.warning {
+            border-color: var(--danger);
+            background: rgba(231, 76, 60, 0.05);
+        }
+
+        .summary-card.success {
+            border-color: var(--success);
+            background: rgba(39, 174, 96, 0.05);
+        }
+
+        .summary-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            color: var(--text-light);
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .summary-value {
+            font-size: 36px;
+            font-weight: 700;
+            font-family: 'Menlo', 'Monaco', monospace;
+            margin-bottom: 8px;
+        }
+
+        .summary-value.positive {
+            color: var(--success);
+        }
+
+        .summary-value.negative {
+            color: var(--danger);
+        }
+
+        .summary-secondary {
+            font-size: 13px;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .expense-table {
+            width: 100%;
+            font-size: 13px;
+            margin-top: 20px;
+        }
+
+        .expense-table thead {
+            background: white;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        .expense-table th {
+            text-align: left;
+            padding: 12px 0;
+            font-weight: 600;
+            color: var(--primary);
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 0.3px;
+        }
+
+        .expense-table td {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .expense-table tr.section-header td {
+            padding-top: 16px;
+            padding-bottom: 8px;
+            font-weight: 700;
+            color: var(--secondary);
+            border-bottom: 1px solid var(--secondary);
+        }
+
+        .expense-table tr.total-row td {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            font-weight: 700;
+            border-top: 2px solid var(--accent);
+            border-bottom: none;
+            color: var(--primary);
+        }
+
+        .expense-name {
+            text-align: left;
+        }
+
+        .expense-amount {
+            text-align: right;
+            font-family: 'Menlo', 'Monaco', monospace;
+            font-weight: 600;
+        }
+
+        .expense-amount.positive {
+            color: var(--success);
+        }
+
+        .expense-amount.negative {
+            color: var(--danger);
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        .note {
+            font-size: 12px;
+            color: var(--text-light);
+            margin-top: 16px;
+            padding: 12px;
+            background: white;
+            border-left: 3px solid var(--accent);
+            border-radius: 4px;
+        }
+        
+        /* Tabs */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            background: #f0f0f0;
+            padding: 8px;
+        }
+        
+        .tab-btn {
+            padding: 12px 40px;
+            font-size: 15px;
+            font-weight: 600;
+            border: none;
+            background: transparent;
+            color: var(--text-light);
+            cursor: pointer;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+        
+        .tab-btn:hover {
+            color: var(--primary);
+        }
+        
+        .tab-btn.active {
+            background: white;
+            color: var(--primary);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Post-Downsizing Cash Flow Planner</h1>
+            <p>Model your new financial position — compare buying vs renting</p>
+        </div>
+        
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('buy')">🏠 Buy</button>
+            <button class="tab-btn" onclick="switchTab('rent')">🔑 Rent</button>
+        </div>
+
+        <!-- BUY TAB -->
+        <div id="buy-tab" class="tab-content active">
+        <div class="content">
+            <!-- Left Column: Inputs -->
+            <div>
+                <div class="section">
+                    <div class="section-title">House Purchase</div>
+                    
+                    <div class="form-group">
+                        <label>Purchase Price</label>
+                        <input type="number" id="housePrice" value="850000" step="50000">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Down Payment</label>
+                        <div class="input-row">
+                            <div>
+                                <input type="number" id="downPaymentPercent" value="25" min="0" max="100" step="5" placeholder="%">
+                                <div style="font-size: 11px; color: var(--text-light); margin-top: 4px;">Percentage</div>
+                            </div>
+                            <div>
+                                <input type="number" id="downPaymentAmount" value="212500" step="10000" placeholder="$">
+                                <div style="font-size: 11px; color: var(--text-light); margin-top: 4px;">Dollar Amount</div>
+                            </div>
+                        </div>
+                        <input type="range" id="downPaymentSlider" value="25" min="0" max="100" step="5" style="margin-top: 12px;">
+                        <div class="range-display">
+                            <span>0%</span>
+                            <span id="sliderDisplay">25%</span>
+                            <span>100%</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Loan Amount</label>
+                        <input type="text" id="loanAmount" readonly style="background: white; font-weight: 700;">
+                    </div>
+                </div>
+
+                <div class="section" style="margin-top: 24px;">
+                    <div class="section-title">Mortgage Terms</div>
+                    
+                    <div class="form-group">
+                        <label>Interest Rate (%)</label>
+                        <input type="number" id="interestRate" value="6.5" step="0.1" min="2" max="12">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Loan Term (years)</label>
+                        <input type="number" id="loanTerm" value="30" step="1" min="5" max="40">
+                    </div>
+
+                    <div class="calculation-row total">
+                        <div class="label">Monthly Mortgage (P&I)</div>
+                        <div class="value" id="mortgagePayment">$0</div>
+                    </div>
+                </div>
+
+                <div class="section" style="margin-top: 24px;">
+                    <div class="section-title">Property Costs</div>
+                    
+                    <div class="form-group">
+                        <label>Property Tax</label>
+                        <div style="display: grid; grid-template-columns: 80px 1fr 1fr; gap: 12px; align-items: start;">
+                            <div>
+                                <input type="number" id="propertyTaxRate" value="1.5" step="0.1" min="0" max="5">
+                                <div style="font-size: 11px; color: var(--text-light); margin-top: 4px;">Rate %</div>
+                            </div>
+                            <div>
+                                <input type="number" id="propertyTaxAnnual" value="" step="100" placeholder="Auto">
+                                <div style="font-size: 11px; color: var(--text-light); margin-top: 4px;">Annual $</div>
+                            </div>
+                            <div>
+                                <input type="number" id="propertyTaxMonthly" value="" step="50" placeholder="Auto">
+                                <div style="font-size: 11px; color: var(--text-light); margin-top: 4px;">Monthly $</div>
+                            </div>
+                        </div>
+                        <div style="font-size: 11px; color: var(--secondary); margin-top: 8px;">💡 Enter rate OR annual OR monthly — others auto-calculate</div>
+                    </div>
+
+                    <div class="form-group" style="margin-top: 20px;">
+                        <label>Homeowners Insurance</label>
+                        <div style="display: grid; grid-template-columns: 80px 1fr 1fr; gap: 12px; align-items: start;">
+                            <div>
+                                <input type="number" id="insuranceRate" value="0.18" step="0.01" min="0" max="2">
+                                <div style="font-size: 11px; color: var(--text-light); margin-top: 4px;">Rate %</div>
+                            </div>
+                            <div>
+                                <input type="number" id="insuranceAnnual" value="" step="100" placeholder="Auto">
+                                <div style="font-size: 11px; color: var(--text-light); margin-top: 4px;">Annual $</div>
+                            </div>
+                            <div>
+                                <input type="number" id="insuranceMonthly" value="" step="25" placeholder="Auto">
+                                <div style="font-size: 11px; color: var(--text-light); margin-top: 4px;">Monthly $</div>
+                            </div>
+                        </div>
+                        <div style="font-size: 11px; color: var(--secondary); margin-top: 8px;">💡 Enter rate OR annual OR monthly — others auto-calculate</div>
+                    </div>
+
+                    <div class="calculation-row" style="margin-top: 16px;">
+                        <div class="label">Annual Property Tax</div>
+                        <div class="value" id="annualPropertyTax">$0</div>
+                    </div>
+                    <div class="calculation-row">
+                        <div class="label">Annual Insurance</div>
+                        <div class="value" id="annualInsuranceDisplay">$0</div>
+                    </div>
+                    <div class="calculation-row total">
+                        <div class="label">Monthly (Tax + Insurance)</div>
+                        <div class="value" id="monthlyTaxInsurance">$0</div>
+                    </div>
+                </div>
+                
+                <div class="section" style="margin-top: 24px;">
+                    <div class="section-title">Sale Proceeds</div>
+                    
+                    <div class="form-group">
+                        <label>Net Sale Price</label>
+                        <input type="number" id="netSalePrice" value="1250000" step="10000">
+                    </div>
+                    
+                    <div class="calculation-row">
+                        <div class="label">Down Payment</div>
+                        <div class="value negative" id="proceedsDownPayment">-$212,500</div>
+                    </div>
+                    <div class="calculation-row">
+                        <div class="label">Debt Paydown</div>
+                        <div class="value negative" id="proceedsDebtPaydown">-$0</div>
+                    </div>
+                    <div class="calculation-row total">
+                        <div class="label">Remaining Proceeds</div>
+                        <div class="value positive" id="remainingProceeds">$1,037,500</div>
+                    </div>
+                </div>
+                
+                <div class="section" style="margin-top: 24px;">
+                    <div class="section-title">Debt Paydown</div>
+                    
+                    <div class="form-group">
+                        <label>Total IRS/Credit Debt Balance</label>
+                        <input type="number" id="totalDebtBalance" value="150000" step="5000">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Paydown from Proceeds</label>
+                        <input type="number" id="debtPaydown" value="0" step="5000" min="0">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Interest Rate (%)</label>
+                        <input type="number" id="debtInterestRate" value="18" step="0.5" min="0" max="30">
+                    </div>
+                    
+                    <div class="calculation-row">
+                        <div class="label">Remaining Debt</div>
+                        <div class="value" id="remainingDebt">$150,000</div>
+                    </div>
+                    <div class="calculation-row total">
+                        <div class="label">Monthly Payment</div>
+                        <div class="value" id="monthlyDebtPayment">$5,000</div>
+                    </div>
+                    <div style="font-size: 11px; color: var(--secondary); margin-top: 8px;">
+                        💡 Use proceeds to pay down debt and reduce monthly payment
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Results -->
+            <div>
+                <div class="summary-card success" id="summaryCard">
+                    <div class="summary-label">Monthly Cash Remaining</div>
+                    <div class="summary-value positive" id="monthlyCash">$13,767</div>
+                    <div class="summary-secondary" id="monthlyCashSecondary">–$2,300 rent → $3,456 mortgage + tax + insurance</div>
+                </div>
+
+                <div class="summary-card" id="annualCard">
+                    <div class="summary-label">Annual Cash Remaining</div>
+                    <div class="summary-value positive" id="annualCash">$165,204</div>
+                    <div class="summary-secondary" id="annualCashSecondary">(after $24,000 stock additions)</div>
+                </div>
+
+                <div class="section" style="margin-top: 24px;">
+                    <div class="section-title">Monthly Income & Expenses</div>
+                    
+                    <table class="expense-table">
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th style="width: 35%;">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="section-header">
+                                <td colspan="2">Income</td>
+                            </tr>
+                            <tr>
+                                <td class="expense-name">Base Pay (biweekly × 2)</td>
+                                <td class="expense-amount positive">$23,324.00</td>
+                            </tr>
+                            <tr class="section-header">
+                                <td colspan="2">Housing & Utilities</td>
+                            </tr>
+                            <tr>
+                                <td class="expense-name">Mortgage (P&I)</td>
+                                <td class="expense-amount negative" id="expMortgage">-$3,160</td>
+                            </tr>
+                            <tr>
+                                <td class="expense-name">Property Tax & Insurance</td>
+                                <td class="expense-amount negative" id="expTaxIns">-$230</td>
+                            </tr>
+                            <tr>
+                                <td class="expense-name">Housekeeping</td>
+                                <td class="expense-amount negative">-$480.00</td>
+                            </tr>
+                            <tr>
+                                <td class="expense-name">Verizon</td>
+                                <td class="expense-amount negative">-$250.00</td>
+                            </tr>
+                            <tr>
+                                <td class="expense-name">PSEG</td>
+                                <td class="expense-amount negative">-$250.00</td>
+                            </tr>
+                            <tr class="section-header">
+                                <td colspan="2">Vehicles & Insurance</td>
+                            </tr>
+                            <tr>
+                                <td class="expense-name">VW Tiguan</td>
+                                <td class="expense-amount negative">-$542.00</td>
+                            </tr>
+                            <tr>
+                                <td class="expense-name">VW Taos 1</td>
+                                <td class="expense-amount negative">-$472.00</td>
+                            </tr>
+                            <tr>
+                                <td class="expense-name">VW Taos 2</td>
+                                <td class="expense-amount negative">-$550.00</td>
+                            </tr>
+                            <tr>
+                                <td class="expense-name">LR3</td>
+                                <td class="expense-amount negative">-$1,200.00</td>
+                            </tr>
+                            <tr>
+                                <td class="expense-name">State Farm</td>
+                                <td class="expense-amount negative">-$1,050.00</td>
+                            </tr>
+                            <tr class="section-header">
+                                <td colspan="2">Debt & Misc</td>
+                            </tr>
+                            <tr>
+                                <td class="expense-name">IRS/Credit Debt</td>
+                                <td class="expense-amount negative" id="expDebtPayment">-$5,000</td>
+                            </tr>
+                            <tr>
+                                <td class="expense-name">Misc & Subscriptions</td>
+                                <td class="expense-amount negative">-$375.00</td>
+                            </tr>
+                            <tr class="section-header">
+                                <td colspan="2">Other</td>
+                            </tr>
+                            <tr>
+                                <td class="expense-name">Boat</td>
+                                <td class="expense-amount negative"><input type="number" id="boatExpense" value="1000" step="100" min="0" style="width: 100px; text-align: right; padding: 4px 8px; font-size: 13px; color: #e74c3c;"></td>
+                            </tr>
+                            <tr>
+                                <td class="expense-name">Landscaping</td>
+                                <td class="expense-amount negative"><input type="number" id="landscapingExpense" value="500" step="50" min="0" style="width: 100px; text-align: right; padding: 4px 8px; font-size: 13px; color: #e74c3c;"></td>
+                            </tr>
+                            <tr>
+                                <td class="expense-name">Pool</td>
+                                <td class="expense-amount negative"><input type="number" id="poolExpense" value="0" step="50" min="0" style="width: 100px; text-align: right; padding: 4px 8px; font-size: 13px; color: #e74c3c;"></td>
+                            </tr>
+                            <tr>
+                                <td class="expense-name">Loan</td>
+                                <td class="expense-amount negative"><input type="number" id="loanExpense" value="625" step="25" min="0" style="width: 100px; text-align: right; padding: 4px 8px; font-size: 13px; color: #e74c3c;"></td>
+                            </tr>
+                            <tr>
+                                <td class="expense-name">Wake Forest Loan</td>
+                                <td class="expense-amount negative"><input type="number" id="wakeForestLoan" value="1200" step="100" min="0" style="width: 100px; text-align: right; padding: 4px 8px; font-size: 13px; color: #e74c3c;"></td>
+                            </tr>
+                            <tr class="section-header">
+                                <td colspan="2">Investments</td>
+                            </tr>
+                            <tr>
+                                <td class="expense-name">Monthly Stock Addition</td>
+                                <td class="expense-amount negative"><input type="number" id="monthlyStock" value="2000" step="100" min="0" style="width: 100px; text-align: right; padding: 4px 8px; font-size: 13px; color: #e74c3c;"></td>
+                            </tr>
+                            <tr class="total-row">
+                                <td class="expense-name">Net Monthly Cash</td>
+                                <td class="expense-amount positive" id="netMonthly">$13,767</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="note">
+                    <strong>Note:</strong> Mortgage calculation uses 30-year amortization. Property tax estimated at 1.1% annually (Long Island average). Insurance estimate based on home value. Adjust these values to match your area and actual quotes.
+                </div>
+            </div>
+        </div>
+        </div>
+        <!-- END BUY TAB -->
+        
+        <!-- RENT TAB -->
+        <div id="rent-tab" class="tab-content">
+        <div class="content">
+            <!-- Left Column: Rent Inputs -->
+            <div>
+                <div class="section">
+                    <div class="section-title">Rent Details</div>
+                    
+                    <div class="form-group">
+                        <label>Monthly Rent (utilities included)</label>
+                        <input type="number" id="monthlyRent" value="4500" step="100">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Monthly Storage</label>
+                        <input type="number" id="storageRent" value="200" step="25">
+                    </div>
+                    
+                    <div class="calculation-row total">
+                        <div class="label">Total Monthly Housing</div>
+                        <div class="value" id="rentTotalHousing">$4,700</div>
+                    </div>
+                </div>
+                
+                <div class="section" style="margin-top: 24px;">
+                    <div class="section-title">Money in the Bank</div>
+                    
+                    <div class="form-group">
+                        <label>House Sale Proceeds</label>
+                        <input type="number" id="houseProceeds" value="500000" step="10000">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Interest Rate (APY %)</label>
+                        <input type="number" id="savingsRate" value="4.5" step="0.1" min="0" max="10">
+                    </div>
+                    
+                    <div class="calculation-row">
+                        <div class="label">Annual Interest Earned</div>
+                        <div class="value positive" id="annualInterest">$22,500</div>
+                    </div>
+                    <div class="calculation-row">
+                        <div class="label">Monthly Interest Earned</div>
+                        <div class="value positive" id="monthlyInterest">$1,875</div>
+                    </div>
+                    <div class="calculation-row total">
+                        <div class="label">Effective Monthly Cost</div>
+                        <div class="value" id="effectiveRentCost">$2,825</div>
+                    </div>
+                    <div style="font-size: 11px; color: var(--text-light); margin-top: 8px;">
+                        💡 Effective cost = Housing cost − Interest earned
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right Column: Rent Results -->
+            <div>
+                <div class="summary-card success" id="rentSummaryCard">
+                    <div class="summary-label">Monthly Cash Remaining</div>
+                    <div class="summary-value positive" id="rentMonthlyCash">$0</div>
+                    <div class="summary-secondary" id="rentMonthlyCashSecondary">Rent + Storage</div>
+                </div>
+
+                <div class="summary-card" id="rentAnnualCard">
+                    <div class="summary-label">Annual Cash Remaining</div>
+                    <div class="summary-value positive" id="rentAnnualCash">$0</div>
+                    <div class="summary-secondary" id="rentAnnualCashSecondary">(after stock additions)</div>
+                </div>
+
+                <div class="section" style="margin-top: 24px;">
+                    <div class="section-title">Monthly Income & Expenses</div>
+                    
+                    <table class="expense-table">
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th style="width: 35%;">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="section-header">
+                                <td colspan="2">Income</td>
+                            </tr>
+                            <tr>
+                                <td class="expense-name">Base Pay (biweekly × 2)</td>
+                                <td class="expense-amount positive">$23,324.00</td>
+                            </tr>
+                            <tr class="section-header">
+                                <td colspan="2">Housing</td>
+                            </tr>
+                            <tr>
+                                <td class="expense-name">Rent (utilities included)</td>
+                                <td class="expense-amount negative" id="expRent">-$4,500</td>
+                            </tr>
+                            <tr>
+                                <td class="expense-name">Storage</td>
+                                <td class="expense-amount negative" id="expStorage">-$200</td>
+                            </tr>
+                            <tr class="section-header">
+                                <td colspan="2">Vehicles & Insurance</td>
+                            </tr>
+                            <tr>
+                                <td class="expense-name">VW Tiguan</td>
+                                <td class="expense-amount negative">-$542.00</td>
+                            </tr>
+                            <tr>
+                                <td class="expense-name">VW Taos 1</td>
+                                <td class="expense-amount negative">-$472.00</td>
+                            </tr>
+                            <tr>
+                                <td class="expense-name">VW Taos 2</td>
+                                <td class="expense-amount negative">-$550.00</td>
+                            </tr>
+                            <tr>
+                                <td class="expense-name">LR3</td>
+                                <td class="expense-amount negative">-$1,200.00</td>
+                            </tr>
+                            <tr>
+                                <td class="expense-name">State Farm</td>
+                                <td class="expense-amount negative">-$1,050.00</td>
+                            </tr>
+                            <tr class="section-header">
+                                <td colspan="2">Debt & Misc</td>
+                            </tr>
+                            <tr>
+                                <td class="expense-name">IRS/Credit Debt</td>
+                                <td class="expense-amount negative" id="rentExpDebtPayment">-$5,000</td>
+                            </tr>
+                            <tr>
+                                <td class="expense-name">Misc & Subscriptions</td>
+                                <td class="expense-amount negative">-$375.00</td>
+                            </tr>
+                            <tr class="section-header">
+                                <td colspan="2">Other</td>
+                            </tr>
+                            <tr>
+                                <td class="expense-name">Loan</td>
+                                <td class="expense-amount negative"><input type="number" id="rentLoanExpense" value="625" step="25" min="0" style="width: 100px; text-align: right; padding: 4px 8px; font-size: 13px; color: #e74c3c;"></td>
+                            </tr>
+                            <tr>
+                                <td class="expense-name">Wake Forest Loan</td>
+                                <td class="expense-amount negative"><input type="number" id="rentWakeForestLoan" value="1200" step="100" min="0" style="width: 100px; text-align: right; padding: 4px 8px; font-size: 13px; color: #e74c3c;"></td>
+                            </tr>
+                            <tr class="section-header">
+                                <td colspan="2">Investments</td>
+                            </tr>
+                            <tr>
+                                <td class="expense-name">Monthly Stock Addition</td>
+                                <td class="expense-amount negative"><input type="number" id="rentMonthlyStock" value="2000" step="100" min="0" style="width: 100px; text-align: right; padding: 4px 8px; font-size: 13px; color: #e74c3c;"></td>
+                            </tr>
+                            <tr class="total-row">
+                                <td class="expense-name">Net Monthly Cash</td>
+                                <td class="expense-amount positive" id="rentNetMonthly">$0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="note">
+                    <strong>Note:</strong> Rent scenario assumes utilities are included. No property tax, insurance, or home maintenance costs.
+                </div>
+            </div>
+        </div>
+        </div>
+        <!-- END RENT TAB -->
+    </div>
+
+    <script>
+        const housePrice = document.getElementById('housePrice');
+        const downPaymentPercent = document.getElementById('downPaymentPercent');
+        const downPaymentAmount = document.getElementById('downPaymentAmount');
+        const downPaymentSlider = document.getElementById('downPaymentSlider');
+        const loanAmount = document.getElementById('loanAmount');
+        const interestRate = document.getElementById('interestRate');
+        const loanTerm = document.getElementById('loanTerm');
+        
+        // Property tax inputs
+        const propertyTaxRate = document.getElementById('propertyTaxRate');
+        const propertyTaxAnnual = document.getElementById('propertyTaxAnnual');
+        const propertyTaxMonthly = document.getElementById('propertyTaxMonthly');
+        
+        // Insurance inputs
+        const insuranceRate = document.getElementById('insuranceRate');
+        const insuranceAnnual = document.getElementById('insuranceAnnual');
+        const insuranceMonthly = document.getElementById('insuranceMonthly');
+        
+        // Track last input source
+        let taxInputSource = 'rate';
+        let insuranceInputSource = 'rate';
+        
+        const mortgagePayment = document.getElementById('mortgagePayment');
+        const annualPropertyTax = document.getElementById('annualPropertyTax');
+        const monthlyTaxInsurance = document.getElementById('monthlyTaxInsurance');
+        const monthlyCash = document.getElementById('monthlyCash');
+        const annualCash = document.getElementById('annualCash');
+        const monthlyCashSecondary = document.getElementById('monthlyCashSecondary');
+        const netMonthly = document.getElementById('netMonthly');
+        const sliderDisplay = document.getElementById('sliderDisplay');
+        const summaryCard = document.getElementById('summaryCard');
+        const expMortgage = document.getElementById('expMortgage');
+        const expTaxIns = document.getElementById('expTaxIns');
+
+        const FIXED_EXPENSES = 6341; // Vehicles (doubled), misc (no credit/debt - that's now separate)
+        const MONTHLY_INCOME = 23324;
+        const monthlyStockInput = document.getElementById('monthlyStock');
+        const wakeForestInput = document.getElementById('wakeForestLoan');
+        const poolInput = document.getElementById('poolExpense');
+        const loanInput = document.getElementById('loanExpense');
+        const boatInput = document.getElementById('boatExpense');
+        const landscapingInput = document.getElementById('landscapingExpense');
+        
+        // Sale proceeds input
+        const netSalePriceInput = document.getElementById('netSalePrice');
+        
+        // Debt paydown inputs
+        const totalDebtBalanceInput = document.getElementById('totalDebtBalance');
+        const debtPaydownInput = document.getElementById('debtPaydown');
+        const debtInterestRateInput = document.getElementById('debtInterestRate');
+
+        function calculateMortgage(principal, rate, years) {
+            if (principal === 0) return 0;
+            const monthlyRate = rate / 100 / 12;
+            const numberOfPayments = years * 12;
+            
+            if (monthlyRate === 0) {
+                return principal / numberOfPayments;
+            }
+            
+            const monthlyPayment = (principal * (monthlyRate * Math.pow(1 + monthlyRate, numberOfPayments))) / 
+                                  (Math.pow(1 + monthlyRate, numberOfPayments) - 1);
+            return monthlyPayment;
+        }
+
+        function formatCurrency(value) {
+            return new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            }).format(value);
+        }
+
+        function formatCurrencyDetailed(value) {
+            return new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }).format(value);
+        }
+
+        function updateCalculations() {
+            const housePriceValue = parseFloat(housePrice.value) || 0;
+            const downPercent = parseFloat(downPaymentPercent.value) || 0;
+            const downPaymentValue = housePriceValue * (downPercent / 100);
+            const loanValue = housePriceValue - downPaymentValue;
+            const rateValue = parseFloat(interestRate.value) || 0;
+            const termValue = parseInt(loanTerm.value) || 30;
+            const taxRateValue = parseFloat(propertyTaxRate.value) || 1.5;
+
+            // Update slider and display
+            downPaymentSlider.value = downPercent;
+            sliderDisplay.textContent = downPercent.toFixed(0) + '%';
+            loanAmount.value = formatCurrency(loanValue);
+
+            // Calculate mortgage payment
+            const monthlyMortgage = calculateMortgage(loanValue, rateValue, termValue);
+            mortgagePayment.textContent = formatCurrency(monthlyMortgage);
+            expMortgage.textContent = '-' + formatCurrency(monthlyMortgage);
+
+            // Calculate property tax based on input source
+            let annualTax;
+            if (taxInputSource === 'annual' && propertyTaxAnnual.value) {
+                annualTax = parseFloat(propertyTaxAnnual.value) || 0;
+            } else if (taxInputSource === 'monthly' && propertyTaxMonthly.value) {
+                annualTax = (parseFloat(propertyTaxMonthly.value) || 0) * 12;
+            } else {
+                annualTax = housePriceValue * (taxRateValue / 100);
+            }
+            const monthlyTax = annualTax / 12;
+            
+            // Auto-fill tax fields
+            if (taxInputSource === 'rate') {
+                propertyTaxAnnual.value = Math.round(annualTax);
+                propertyTaxMonthly.value = Math.round(monthlyTax);
+            } else if (taxInputSource === 'annual') {
+                propertyTaxMonthly.value = Math.round(monthlyTax);
+                if (housePriceValue > 0) propertyTaxRate.value = ((annualTax / housePriceValue) * 100).toFixed(2);
+            } else if (taxInputSource === 'monthly') {
+                propertyTaxAnnual.value = Math.round(annualTax);
+                if (housePriceValue > 0) propertyTaxRate.value = ((annualTax / housePriceValue) * 100).toFixed(2);
+            }
+            
+            // Calculate insurance based on input source
+            let annualIns;
+            const insRateValue = parseFloat(insuranceRate.value) || 0.18;
+            if (insuranceInputSource === 'annual' && insuranceAnnual.value) {
+                annualIns = parseFloat(insuranceAnnual.value) || 0;
+            } else if (insuranceInputSource === 'monthly' && insuranceMonthly.value) {
+                annualIns = (parseFloat(insuranceMonthly.value) || 0) * 12;
+            } else {
+                annualIns = housePriceValue * (insRateValue / 100);
+            }
+            const monthlyIns = annualIns / 12;
+            
+            // Auto-fill insurance fields
+            if (insuranceInputSource === 'rate') {
+                insuranceAnnual.value = Math.round(annualIns);
+                insuranceMonthly.value = Math.round(monthlyIns);
+            } else if (insuranceInputSource === 'annual') {
+                insuranceMonthly.value = Math.round(monthlyIns);
+                if (housePriceValue > 0) insuranceRate.value = ((annualIns / housePriceValue) * 100).toFixed(2);
+            } else if (insuranceInputSource === 'monthly') {
+                insuranceAnnual.value = Math.round(annualIns);
+                if (housePriceValue > 0) insuranceRate.value = ((annualIns / housePriceValue) * 100).toFixed(2);
+            }
+            
+            const monthlyTaxIns = monthlyTax + monthlyIns;
+
+            annualPropertyTax.textContent = formatCurrency(annualTax);
+            document.getElementById('annualInsuranceDisplay').textContent = formatCurrency(annualIns);
+            monthlyTaxInsurance.textContent = formatCurrency(monthlyTaxIns);
+            expTaxIns.textContent = '-' + formatCurrency(monthlyTaxIns);
+
+            // Calculate remaining proceeds
+            const netSalePrice = parseFloat(netSalePriceInput.value) || 0;
+            const remainingProceedsCalc = netSalePrice - downPaymentValue - (parseFloat(debtPaydownInput.value) || 0);
+            
+            document.getElementById('proceedsDownPayment').textContent = '-' + formatCurrency(downPaymentValue);
+            document.getElementById('proceedsDebtPaydown').textContent = '-' + formatCurrency(parseFloat(debtPaydownInput.value) || 0);
+            document.getElementById('remainingProceeds').textContent = formatCurrency(remainingProceedsCalc);
+            
+            // Calculate debt payment based on paydown
+            const totalDebt = parseFloat(totalDebtBalanceInput.value) || 0;
+            const paydown = parseFloat(debtPaydownInput.value) || 0;
+            const debtRate = parseFloat(debtInterestRateInput.value) || 18;
+            const remainingDebt = Math.max(0, totalDebt - paydown);
+            
+            // Simple calculation: assume paying ~3.33% of balance monthly (roughly 3 year payoff)
+            // Or use proportional reduction from $5000 base payment
+            const baseDebtPayment = 5000;
+            const debtPaymentRatio = totalDebt > 0 ? remainingDebt / totalDebt : 0;
+            const monthlyDebtPmt = Math.round(baseDebtPayment * debtPaymentRatio);
+            
+            // Update debt displays
+            document.getElementById('remainingDebt').textContent = formatCurrency(remainingDebt);
+            document.getElementById('monthlyDebtPayment').textContent = formatCurrency(monthlyDebtPmt);
+            document.getElementById('expDebtPayment').textContent = '-' + formatCurrency(monthlyDebtPmt);
+            
+            // Calculate net cash
+            const stockContribution = parseFloat(monthlyStockInput.value) || 0;
+            const wakeForestPayment = parseFloat(wakeForestInput.value) || 0;
+            const poolPayment = parseFloat(poolInput.value) || 0;
+            const loanPayment = parseFloat(loanInput.value) || 0;
+            const boatPayment = parseFloat(boatInput.value) || 0;
+            const landscapingPayment = parseFloat(landscapingInput.value) || 0;
+            const totalMonthlyHousingExpense = monthlyMortgage + monthlyTaxIns;
+            const totalMonthlyExpenses = FIXED_EXPENSES + totalMonthlyHousingExpense + stockContribution + wakeForestPayment + poolPayment + loanPayment + boatPayment + landscapingPayment + monthlyDebtPmt;
+            const monthlyNet = MONTHLY_INCOME - totalMonthlyExpenses;
+            const annualNet = monthlyNet * 12;
+
+            // Update displays
+            monthlyCash.textContent = formatCurrency(monthlyNet);
+            annualCash.textContent = formatCurrency(annualNet);
+            netMonthly.textContent = formatCurrency(monthlyNet);
+            monthlyCashSecondary.textContent = `$${(totalMonthlyHousingExpense).toLocaleString('en-US', {maximumFractionDigits: 0})} mortgage + tax + insurance`;
+            document.getElementById('annualCashSecondary').textContent = `(after ${formatCurrency(stockContribution * 12)} stock additions)`;
+
+            // Update card styling
+            if (monthlyNet < 0) {
+                summaryCard.classList.remove('success');
+                summaryCard.classList.add('warning');
+                monthlyCash.classList.remove('positive');
+                monthlyCash.classList.add('negative');
+            } else {
+                summaryCard.classList.remove('warning');
+                summaryCard.classList.add('success');
+                monthlyCash.classList.remove('negative');
+                monthlyCash.classList.add('positive');
+            }
+
+            if (annualNet < 0) {
+                document.getElementById('annualCard').classList.remove('success');
+                document.getElementById('annualCard').classList.add('warning');
+                annualCash.classList.remove('positive');
+                annualCash.classList.add('negative');
+            } else {
+                document.getElementById('annualCard').classList.remove('warning');
+                document.getElementById('annualCard').classList.add('success');
+                annualCash.classList.remove('negative');
+                annualCash.classList.add('positive');
+            }
+        }
+
+        // Track which input triggered the update
+        let lastDownPaymentInput = 'percent';
+        
+        // Event listeners
+        housePrice.addEventListener('input', function() {
+            // Recalculate based on last input type
+            if (lastDownPaymentInput === 'amount') {
+                const dollarVal = parseFloat(downPaymentAmount.value) || 0;
+                const houseVal = parseFloat(housePrice.value) || 1;
+                downPaymentPercent.value = ((dollarVal / houseVal) * 100).toFixed(1);
+            } else {
+                const houseVal = parseFloat(housePrice.value) || 0;
+                const pct = parseFloat(downPaymentPercent.value) || 0;
+                downPaymentAmount.value = Math.round(houseVal * (pct / 100));
+            }
+            updateCalculations();
+        });
+        
+        downPaymentPercent.addEventListener('input', function() {
+            lastDownPaymentInput = 'percent';
+            const houseVal = parseFloat(housePrice.value) || 0;
+            const pct = parseFloat(this.value) || 0;
+            downPaymentAmount.value = Math.round(houseVal * (pct / 100));
+            downPaymentSlider.value = this.value;
+            updateCalculations();
+        });
+        
+        downPaymentAmount.addEventListener('input', function() {
+            lastDownPaymentInput = 'amount';
+            const houseVal = parseFloat(housePrice.value) || 1;
+            const dollarVal = parseFloat(this.value) || 0;
+            const pct = (dollarVal / houseVal) * 100;
+            downPaymentPercent.value = pct.toFixed(1);
+            downPaymentSlider.value = Math.min(100, Math.max(0, pct));
+            updateCalculations();
+        });
+        
+        downPaymentSlider.addEventListener('input', function() {
+            lastDownPaymentInput = 'percent';
+            downPaymentPercent.value = this.value;
+            const houseVal = parseFloat(housePrice.value) || 0;
+            downPaymentAmount.value = Math.round(houseVal * (parseFloat(this.value) / 100));
+            updateCalculations();
+        });
+        
+        interestRate.addEventListener('input', updateCalculations);
+        loanTerm.addEventListener('input', updateCalculations);
+        
+        // Property tax listeners
+        propertyTaxRate.addEventListener('input', function() {
+            taxInputSource = 'rate';
+            updateCalculations();
+        });
+        propertyTaxAnnual.addEventListener('input', function() {
+            taxInputSource = 'annual';
+            updateCalculations();
+        });
+        propertyTaxMonthly.addEventListener('input', function() {
+            taxInputSource = 'monthly';
+            updateCalculations();
+        });
+        
+        // Insurance listeners
+        insuranceRate.addEventListener('input', function() {
+            insuranceInputSource = 'rate';
+            updateCalculations();
+        });
+        insuranceAnnual.addEventListener('input', function() {
+            insuranceInputSource = 'annual';
+            updateCalculations();
+        });
+        insuranceMonthly.addEventListener('input', function() {
+            insuranceInputSource = 'monthly';
+            updateCalculations();
+        });
+        
+        monthlyStockInput.addEventListener('input', updateCalculations);
+        wakeForestInput.addEventListener('input', updateCalculations);
+        poolInput.addEventListener('input', updateCalculations);
+        loanInput.addEventListener('input', updateCalculations);
+        boatInput.addEventListener('input', updateCalculations);
+        landscapingInput.addEventListener('input', updateCalculations);
+        netSalePriceInput.addEventListener('input', updateCalculations);
+        totalDebtBalanceInput.addEventListener('input', updateCalculations);
+        debtPaydownInput.addEventListener('input', updateCalculations);
+        debtInterestRateInput.addEventListener('input', updateCalculations);
+
+        // Initial calculation
+        updateCalculations();
+        
+        // ========== RENT TAB ==========
+        const monthlyRentInput = document.getElementById('monthlyRent');
+        const storageRentInput = document.getElementById('storageRent');
+        const rentLoanInput = document.getElementById('rentLoanExpense');
+        const rentWakeForestInput = document.getElementById('rentWakeForestLoan');
+        const rentStockInput = document.getElementById('rentMonthlyStock');
+        const houseProceedsInput = document.getElementById('houseProceeds');
+        const savingsRateInput = document.getElementById('savingsRate');
+        
+        // Rent fixed expenses (no housing utilities, no boat, no landscaping, no pool)
+        // Vehicles doubled ($542+472+550+1200+1050) + Misc ($375) + IRS/Credit Debt ($5000) = $9189
+        const RENT_FIXED_EXPENSES = 9189;
+        
+        function updateRentCalculations() {
+            const rent = parseFloat(monthlyRentInput.value) || 0;
+            const storage = parseFloat(storageRentInput.value) || 0;
+            const loanPmt = parseFloat(rentLoanInput.value) || 0;
+            const wfPmt = parseFloat(rentWakeForestInput.value) || 0;
+            const stockPmt = parseFloat(rentStockInput.value) || 0;
+            
+            // Money in the bank calculations
+            const proceeds = parseFloat(houseProceedsInput.value) || 0;
+            const rate = parseFloat(savingsRateInput.value) || 0;
+            const annualInterestEarned = proceeds * (rate / 100);
+            const monthlyInterestEarned = annualInterestEarned / 12;
+            
+            const totalHousing = rent + storage;
+            const effectiveCost = totalHousing - monthlyInterestEarned;
+            const totalExpenses = RENT_FIXED_EXPENSES + totalHousing + loanPmt + wfPmt + stockPmt;
+            const monthlyNet = MONTHLY_INCOME - totalExpenses + monthlyInterestEarned; // Add interest as income
+            const annualNet = monthlyNet * 12;
+            
+            // Update interest displays
+            document.getElementById('annualInterest').textContent = formatCurrency(annualInterestEarned);
+            document.getElementById('monthlyInterest').textContent = formatCurrency(monthlyInterestEarned);
+            document.getElementById('effectiveRentCost').textContent = formatCurrency(effectiveCost);
+            
+            // Update displays
+            document.getElementById('rentTotalHousing').textContent = formatCurrency(totalHousing);
+            document.getElementById('expRent').textContent = '-' + formatCurrency(rent);
+            document.getElementById('expStorage').textContent = '-' + formatCurrency(storage);
+            document.getElementById('rentMonthlyCash').textContent = formatCurrency(monthlyNet);
+            document.getElementById('rentAnnualCash').textContent = formatCurrency(annualNet);
+            document.getElementById('rentNetMonthly').textContent = formatCurrency(monthlyNet);
+            document.getElementById('rentMonthlyCashSecondary').textContent = `$${rent.toLocaleString()} rent + $${storage.toLocaleString()} storage`;
+            document.getElementById('rentAnnualCashSecondary').textContent = `(after ${formatCurrency(stockPmt * 12)} stock additions)`;
+            
+            // Update card styling
+            const rentSummaryCard = document.getElementById('rentSummaryCard');
+            const rentMonthlyCash = document.getElementById('rentMonthlyCash');
+            const rentAnnualCard = document.getElementById('rentAnnualCard');
+            const rentAnnualCash = document.getElementById('rentAnnualCash');
+            
+            if (monthlyNet < 0) {
+                rentSummaryCard.classList.remove('success');
+                rentSummaryCard.classList.add('warning');
+                rentMonthlyCash.classList.remove('positive');
+                rentMonthlyCash.classList.add('negative');
+            } else {
+                rentSummaryCard.classList.remove('warning');
+                rentSummaryCard.classList.add('success');
+                rentMonthlyCash.classList.remove('negative');
+                rentMonthlyCash.classList.add('positive');
+            }
+            
+            if (annualNet < 0) {
+                rentAnnualCard.classList.remove('success');
+                rentAnnualCard.classList.add('warning');
+                rentAnnualCash.classList.remove('positive');
+                rentAnnualCash.classList.add('negative');
+            } else {
+                rentAnnualCard.classList.remove('warning');
+                rentAnnualCard.classList.add('success');
+                rentAnnualCash.classList.remove('negative');
+                rentAnnualCash.classList.add('positive');
+            }
+        }
+        
+        // Rent event listeners
+        monthlyRentInput.addEventListener('input', updateRentCalculations);
+        storageRentInput.addEventListener('input', updateRentCalculations);
+        rentLoanInput.addEventListener('input', updateRentCalculations);
+        rentWakeForestInput.addEventListener('input', updateRentCalculations);
+        rentStockInput.addEventListener('input', updateRentCalculations);
+        houseProceedsInput.addEventListener('input', updateRentCalculations);
+        savingsRateInput.addEventListener('input', updateRentCalculations);
+        
+        // Initial rent calculation
+        updateRentCalculations();
+        
+        // Tab switching
+        function switchTab(tab) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            document.querySelector(`[onclick="switchTab('${tab}')"]`).classList.add('active');
+            document.getElementById(tab + '-tab').classList.add('active');
+        }
+    </script>
+</body>
+</html>
