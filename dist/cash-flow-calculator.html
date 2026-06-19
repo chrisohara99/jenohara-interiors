@@ -597,6 +597,28 @@
                     <div class="summary-secondary" id="annualCashSecondary">(after $24,000 stock additions)</div>
                 </div>
 
+                <div class="section" style="margin-top: 24px; background: var(--card-bg); padding: 16px; border-radius: 12px;">
+                    <div class="section-title" style="margin-bottom: 12px;">3-Year Summary</div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                        <div class="calculation-row" style="margin: 0;">
+                            <div class="label">Total Renovation</div>
+                            <div class="value negative" id="threeYearRenovation">$0</div>
+                        </div>
+                        <div class="calculation-row" style="margin: 0;">
+                            <div class="label">Total Savings</div>
+                            <div class="value positive" id="threeYearSavings">$0</div>
+                        </div>
+                        <div class="calculation-row" style="margin: 0;">
+                            <div class="label">Total Debt Paid</div>
+                            <div class="value" id="threeYearDebt">$0</div>
+                        </div>
+                        <div class="calculation-row" style="margin: 0;">
+                            <div class="label">Total Mortgage Paid</div>
+                            <div class="value" id="threeYearMortgage">$0</div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="section" style="margin-top: 24px;">
                     <div class="section-title">Monthly Income & Expenses</div>
                     
@@ -1113,6 +1135,17 @@
             netMonthly.textContent = formatCurrency(monthlyNet);
             monthlyCashSecondary.textContent = `$${(totalMonthlyHousingExpense).toLocaleString('en-US', {maximumFractionDigits: 0})} mortgage + tax + insurance`;
             document.getElementById('annualCashSecondary').textContent = `(after ${formatCurrency(stockContribution * 12)} stock additions)`;
+
+            // 3-Year Summary calculations
+            const threeYearRenovation = renovationExpenses * 36;
+            const threeYearSavings = monthlyNet * 36; // Net cash remaining over 3 years
+            const threeYearDebt = monthlyDebtPmt * 36;
+            const threeYearMortgage = (monthlyMortgage + mortgagePrePay) * 36;
+            
+            document.getElementById('threeYearRenovation').textContent = '-' + formatCurrency(threeYearRenovation);
+            document.getElementById('threeYearSavings').textContent = formatCurrency(threeYearSavings);
+            document.getElementById('threeYearDebt').textContent = formatCurrency(threeYearDebt);
+            document.getElementById('threeYearMortgage').textContent = formatCurrency(threeYearMortgage);
 
             // Update card styling
             if (monthlyNet < 0) {
