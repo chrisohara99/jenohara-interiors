@@ -677,8 +677,12 @@
                                 <td colspan="2">Debt & Misc</td>
                             </tr>
                             <tr>
-                                <td class="expense-name">Credit Card + IRS Debt</td>
-                                <td class="expense-amount negative" id="expDebtPayment">-$5,000</td>
+                                <td class="expense-name">Credit Card Debt</td>
+                                <td class="expense-amount negative" id="expCCPayment">-$3,125</td>
+                            </tr>
+                            <tr>
+                                <td class="expense-name">IRS Debt</td>
+                                <td class="expense-amount negative" id="expIRSPayment">-$1,875</td>
                             </tr>
                             <tr>
                                 <td class="expense-name">Misc & Subscriptions</td>
@@ -703,16 +707,12 @@
                                 <td class="expense-name">Loan</td>
                                 <td class="expense-amount negative"><input type="number" id="loanExpense" value="625" step="25" min="0" style="width: 100px; text-align: right; padding: 4px 8px; font-size: 13px; color: #e74c3c;"></td>
                             </tr>
-                            <tr>
-                                <td class="expense-name">Wake Forest Loan</td>
-                                <td class="expense-amount negative"><input type="number" id="wakeForestLoan" value="1200" step="100" min="0" style="width: 100px; text-align: right; padding: 4px 8px; font-size: 13px; color: #e74c3c;"></td>
-                            </tr>
                             <tr class="section-header">
                                 <td colspan="2">Investments</td>
                             </tr>
                             <tr>
                                 <td class="expense-name">Monthly Stock Addition</td>
-                                <td class="expense-amount negative"><input type="number" id="monthlyStock" value="2000" step="100" min="0" style="width: 100px; text-align: right; padding: 4px 8px; font-size: 13px; color: #e74c3c;"></td>
+                                <td class="expense-amount negative"><input type="number" id="monthlyStock" value="0" step="100" min="0" style="width: 100px; text-align: right; padding: 4px 8px; font-size: 13px; color: #e74c3c;"></td>
                             </tr>
                             <tr class="total-row">
                                 <td class="expense-name">Net Monthly Cash</td>
@@ -855,8 +855,12 @@
                                 <td colspan="2">Debt & Misc</td>
                             </tr>
                             <tr>
-                                <td class="expense-name">IRS/Credit Debt</td>
-                                <td class="expense-amount negative" id="rentExpDebtPayment">-$5,000</td>
+                                <td class="expense-name">Credit Card Debt</td>
+                                <td class="expense-amount negative" id="rentExpCCPayment">-$3,125</td>
+                            </tr>
+                            <tr>
+                                <td class="expense-name">IRS Debt</td>
+                                <td class="expense-amount negative" id="rentExpIRSPayment">-$1,875</td>
                             </tr>
                             <tr>
                                 <td class="expense-name">Misc & Subscriptions</td>
@@ -869,16 +873,12 @@
                                 <td class="expense-name">Loan</td>
                                 <td class="expense-amount negative"><input type="number" id="rentLoanExpense" value="625" step="25" min="0" style="width: 100px; text-align: right; padding: 4px 8px; font-size: 13px; color: #e74c3c;"></td>
                             </tr>
-                            <tr>
-                                <td class="expense-name">Wake Forest Loan</td>
-                                <td class="expense-amount negative"><input type="number" id="rentWakeForestLoan" value="1200" step="100" min="0" style="width: 100px; text-align: right; padding: 4px 8px; font-size: 13px; color: #e74c3c;"></td>
-                            </tr>
                             <tr class="section-header">
                                 <td colspan="2">Investments</td>
                             </tr>
                             <tr>
                                 <td class="expense-name">Monthly Stock Addition</td>
-                                <td class="expense-amount negative"><input type="number" id="rentMonthlyStock" value="2000" step="100" min="0" style="width: 100px; text-align: right; padding: 4px 8px; font-size: 13px; color: #e74c3c;"></td>
+                                <td class="expense-amount negative"><input type="number" id="rentMonthlyStock" value="0" step="100" min="0" style="width: 100px; text-align: right; padding: 4px 8px; font-size: 13px; color: #e74c3c;"></td>
                             </tr>
                             <tr class="total-row">
                                 <td class="expense-name">Net Monthly Cash</td>
@@ -942,7 +942,6 @@
         const irsBalanceInput = document.getElementById('irsBalance');
         const irsRateInput = document.getElementById('irsRate');
         const monthlyStockInput = document.getElementById('monthlyStock');
-        const wakeForestInput = document.getElementById('wakeForestLoan');
         const poolInput = document.getElementById('poolExpense');
         const loanInput = document.getElementById('loanExpense');
         const boatInput = document.getElementById('boatExpense');
@@ -1082,24 +1081,28 @@
             const debtPaymentRatio = totalDebt > 0 ? remainingDebt / totalDebt : 0;
             const monthlyDebtPmt = Math.round(baseDebtPayment * debtPaymentRatio);
             
+            // Calculate separate CC and IRS monthly payments (proportional to balance)
+            const ccPayment = totalDebt > 0 ? Math.round(monthlyDebtPmt * (creditCardBal / totalDebt)) : 0;
+            const irsPayment = monthlyDebtPmt - ccPayment;
+            
             // Update debt displays
             document.getElementById('totalDebtDisplay').textContent = formatCurrency(totalDebt);
             document.getElementById('remainingDebt').textContent = formatCurrency(remainingDebt);
             document.getElementById('monthlyDebtPayment').textContent = formatCurrency(monthlyDebtPmt);
-            document.getElementById('expDebtPayment').textContent = '-' + formatCurrency(monthlyDebtPmt);
+            document.getElementById('expCCPayment').textContent = '-' + formatCurrency(ccPayment);
+            document.getElementById('expIRSPayment').textContent = '-' + formatCurrency(irsPayment);
             
             // Calculate net cash
             const hardForkPay = parseFloat(hardForkInput.value) || 0;
             const mortgagePrePay = parseFloat(mortgagePrePayInput.value) || 0;
             const renovationExpenses = parseFloat(renovationExpensesInput.value) || 0;
             const stockContribution = parseFloat(monthlyStockInput.value) || 0;
-            const wakeForestPayment = parseFloat(wakeForestInput.value) || 0;
             const poolPayment = parseFloat(poolInput.value) || 0;
             const loanPayment = parseFloat(loanInput.value) || 0;
             const boatPayment = parseFloat(boatInput.value) || 0;
             const landscapingPayment = parseFloat(landscapingInput.value) || 0;
             const totalMonthlyHousingExpense = monthlyMortgage + monthlyTaxIns + mortgagePrePay + renovationExpenses;
-            const totalMonthlyExpenses = FIXED_EXPENSES + totalMonthlyHousingExpense + stockContribution + wakeForestPayment + poolPayment + loanPayment + boatPayment + landscapingPayment + monthlyDebtPmt;
+            const totalMonthlyExpenses = FIXED_EXPENSES + totalMonthlyHousingExpense + stockContribution + poolPayment + loanPayment + boatPayment + landscapingPayment + monthlyDebtPmt;
             const MONTHLY_INCOME = BASE_MONTHLY_INCOME + hardForkPay;
             const monthlyNet = MONTHLY_INCOME - totalMonthlyExpenses;
             const annualNet = monthlyNet * 12;
@@ -1214,7 +1217,6 @@
         });
         
         monthlyStockInput.addEventListener('input', updateCalculations);
-        wakeForestInput.addEventListener('input', updateCalculations);
         poolInput.addEventListener('input', updateCalculations);
         loanInput.addEventListener('input', updateCalculations);
         boatInput.addEventListener('input', updateCalculations);
@@ -1236,20 +1238,18 @@
         const monthlyRentInput = document.getElementById('monthlyRent');
         const storageRentInput = document.getElementById('storageRent');
         const rentLoanInput = document.getElementById('rentLoanExpense');
-        const rentWakeForestInput = document.getElementById('rentWakeForestLoan');
         const rentStockInput = document.getElementById('rentMonthlyStock');
         const houseProceedsInput = document.getElementById('houseProceeds');
         const savingsRateInput = document.getElementById('savingsRate');
         
         // Rent fixed expenses (no housing utilities, no boat, no landscaping, no pool)
-        // Vehicles doubled ($542+472+550+1200+1050) + Misc ($375) + IRS/Credit Debt ($5000) = $9189
-        const RENT_FIXED_EXPENSES = 9189;
+        // Vehicles ($542+472+550+750+1050) + Misc ($375) + IRS/Credit Debt ($5000) = $8739
+        const RENT_FIXED_EXPENSES = 8739;
         
         function updateRentCalculations() {
             const rent = parseFloat(monthlyRentInput.value) || 0;
             const storage = parseFloat(storageRentInput.value) || 0;
             const loanPmt = parseFloat(rentLoanInput.value) || 0;
-            const wfPmt = parseFloat(rentWakeForestInput.value) || 0;
             const stockPmt = parseFloat(rentStockInput.value) || 0;
             
             // Money in the bank calculations
@@ -1260,7 +1260,7 @@
             
             const totalHousing = rent + storage;
             const effectiveCost = totalHousing - monthlyInterestEarned;
-            const totalExpenses = RENT_FIXED_EXPENSES + totalHousing + loanPmt + wfPmt + stockPmt;
+            const totalExpenses = RENT_FIXED_EXPENSES + totalHousing + loanPmt + stockPmt;
             const monthlyNet = MONTHLY_INCOME - totalExpenses + monthlyInterestEarned; // Add interest as income
             const annualNet = monthlyNet * 12;
             
@@ -1314,7 +1314,6 @@
         monthlyRentInput.addEventListener('input', updateRentCalculations);
         storageRentInput.addEventListener('input', updateRentCalculations);
         rentLoanInput.addEventListener('input', updateRentCalculations);
-        rentWakeForestInput.addEventListener('input', updateRentCalculations);
         rentStockInput.addEventListener('input', updateRentCalculations);
         houseProceedsInput.addEventListener('input', updateRentCalculations);
         savingsRateInput.addEventListener('input', updateRentCalculations);
